@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Causa x Efeito em Apps · RankMyApp</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0f172a; color: white;
+}
+
+/* ── Deck ───────────────────────────────────── */
+.deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+
+.slide {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s ease;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  padding: 52px 80px;
+}
+.slide.active { opacity: 1; pointer-events: all; }
+
+/* ── Navigation ─────────────────────────────── */
+.nav {
+  position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,.08); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 100px; padding: 8px 16px; z-index: 100;
+}
+.nav-btn {
+  background: none; border: none; color: rgba(255,255,255,.7);
+  cursor: pointer; font-size: 17px; padding: 3px 8px;
+  border-radius: 6px; transition: .12s;
+}
+.nav-btn:hover { background: rgba(255,255,255,.15); color: white; }
+.nav-btn:disabled { opacity: .25; cursor: default; }
+.nav-dots { display: flex; gap: 5px; align-items: center; }
+.dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,.25); cursor: pointer;
+  transition: .2s;
+}
+.dot.on { background: #38bdf8; width: 18px; border-radius: 10px; }
+.nav-count { font-size: 11px; color: rgba(255,255,255,.4); min-width: 40px; text-align: center; }
+
+/* ── Typography ─────────────────────────────── */
+.label {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; opacity: .45; margin-bottom: 10px;
+}
+.h1 { font-size: clamp(32px, 4vw, 52px); font-weight: 800; letter-spacing: -.5px; line-height: 1.1; }
+.h2 { font-size: clamp(22px, 2.8vw, 36px); font-weight: 800; letter-spacing: -.3px; line-height: 1.2; }
+.h3 { font-size: clamp(16px, 1.8vw, 22px); font-weight: 700; }
+.lead { font-size: clamp(14px, 1.4vw, 18px); color: rgba(255,255,255,.65); line-height: 1.6; }
+.accent { color: #38bdf8; }
+.sky    { color: #38bdf8; }
+.orange { color: #f97316; }
+.purple { color: #8b5cf6; }
+.green  { color: #10b981; }
+.red    { color: #f87171; }
+.muted  { color: rgba(255,255,255,.4); }
+
+/* ── Slide 1 — Title ─────────────────────────── */
+.s1-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, #0ea5e940 0%, transparent 55%),
+              radial-gradient(ellipse at 75% 80%, #8b5cf630 0%, transparent 45%);
+}
+.logo-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(56,189,248,.12); border: 1px solid rgba(56,189,248,.25);
+  border-radius: 100px; padding: 6px 14px;
+  font-size: 13px; font-weight: 700; color: #38bdf8;
+  margin-bottom: 24px;
+}
+.title-tag {
+  display: inline-block; background: #f97316; color: white;
+  font-size: 11px; font-weight: 700; letter-spacing: .8px;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+  margin-bottom: 18px;
+}
+.s1-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px; width: 100%; max-width: 680px; margin-top: 42px;
+}
+.s1-chip {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 10px; padding: 12px 16px;
+  font-size: 12px; color: rgba(255,255,255,.6);
+}
+.s1-chip strong { color: white; display: block; margin-bottom: 3px; font-size: 13px; }
+
+/* ── Causal chain (Slide 2) ───────────────────── */
+.chain {
+  display: flex; align-items: stretch; gap: 0;
+  width: 100%; max-width: 860px; margin-top: 32px;
+}
+.chain-step {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; position: relative;
+}
+.chain-step + .chain-step::before {
+  content: "→";
+  position: absolute; left: -10px; top: 32px;
+  font-size: 20px; color: rgba(255,255,255,.2); font-weight: 300;
+}
+.chain-box {
+  background: rgba(255,255,255,.05); border: 1.5px solid;
+  border-radius: 12px; padding: 14px 10px; text-align: center;
+  width: 100%; flex: 1;
+}
+.chain-icon { font-size: 24px; margin-bottom: 6px; }
+.chain-dim  { font-size: 11px; font-weight: 700; letter-spacing: .4px; margin-bottom: 6px; }
+.chain-data { font-size: 13px; font-weight: 800; }
+.chain-day  { font-size: 10px; margin-top: 4px; opacity: .5; }
+.chain-arrow { font-size: 11px; margin-top: 8px; opacity: .5; font-style: italic; }
+
+.chain-step.bad  .chain-box { border-color: #ef444450; background: #ef444410; }
+.chain-step.warn .chain-box { border-color: #f5940050; background: #f5940010; }
+.chain-step.sink .chain-box { border-color: #8b5cf650; background: #8b5cf610; }
+
+.timeline-label {
+  font-size: 11px; color: rgba(255,255,255,.3);
+  margin-top: 10px; letter-spacing: .3px;
+}
+
+/* ── Demo pause ───────────────────────────────── */
+.demo-slide {
+  text-align: center;
+  background: radial-gradient(ellipse at center, #0ea5e915 0%, transparent 60%);
+}
+.demo-icon {
+  font-size: 56px; margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: .85; }
+}
+.demo-badge {
+  display: inline-block; background: #0ea5e9; border-radius: 100px;
+  padding: 8px 20px; font-size: 13px; font-weight: 700;
+  letter-spacing: .8px; text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.demo-hint {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px; padding: 16px 28px; margin-top: 24px;
+  font-size: 13px; color: rgba(255,255,255,.55); max-width: 480px;
+  line-height: 1.6;
+}
+
+/* ── Mini impact map (Slide 4) ───────────────── */
+.map-wrap {
+  position: relative; width: 680px; height: 280px;
+  margin: 24px 0;
+}
+.map-node {
+  position: absolute; border-radius: 10px;
+  border: 1.5px solid; padding: 10px 14px;
+  text-align: center; font-size: 12px; font-weight: 700;
+  cursor: default;
+}
+.map-node .mn-icon { font-size: 18px; margin-bottom: 3px; }
+.map-svg {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%; pointer-events: none;
+}
+
+/* ── Persona cards ────────────────────────────── */
+.persona-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; width: 100%; max-width: 840px; margin-top: 28px; }
+.persona-card {
+  background: rgba(255,255,255,.04); border: 1.5px solid rgba(255,255,255,.1);
+  border-radius: 16px; padding: 24px 20px;
+}
+.persona-card.cs   { border-color: #0ea5e935; background: #0ea5e908; }
+.persona-card.mkt  { border-color: #f9731635; background: #f9731608; }
+.persona-card.prod { border-color: #8b5cf635; background: #8b5cf608; }
+.pc-icon { font-size: 28px; margin-bottom: 10px; }
+.pc-name { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+.pc-tag  { font-size: 11px; opacity: .5; margin-bottom: 12px; }
+.pc-entry {
+  font-size: 11.5px; color: rgba(255,255,255,.7); line-height: 1.5;
+  padding: 10px; background: rgba(0,0,0,.2); border-radius: 8px;
+}
+.pc-entry strong { display: block; margin-bottom: 4px; font-size: 10px; letter-spacing: .5px; text-transform: uppercase; opacity: .5; }
+
+/* ── Marketing case ───────────────────────────── */
+.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; width: 100%; max-width: 860px; margin-top: 20px; }
+.case-box {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 20px;
+}
+.case-box-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; opacity: .45; margin-bottom: 12px; }
+.metric-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+.metric-row:last-child { border-bottom: none; }
+.metric-name { font-size: 12.5px; color: rgba(255,255,255,.7); }
+.metric-val  { font-size: 14px; font-weight: 800; }
+.metric-val.red   { color: #f87171; }
+.metric-val.green { color: #34d399; }
+.diag-step {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.diag-step:last-child { border-bottom: none; }
+.diag-num { width: 20px; height: 20px; border-radius: 50%; background: #f97316; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+.diag-text { font-size: 12px; color: rgba(255,255,255,.75); line-height: 1.4; }
+
+/* ── Sidebar mockup (Slide 8) ─────────────────── */
+.sidebar-demo {
+  display: flex; gap: 28px; align-items: flex-start;
+  width: 100%; max-width: 900px; margin-top: 16px;
+}
+.panel-mock {
+  width: 300px; flex-shrink: 0;
+  background: white; border-radius: 14px; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  color: #1e293b;
+}
+.pm-head { background: #0f172a; padding: 12px 14px; display: flex; align-items: center; gap: 8px; }
+.pm-badge { background: #0ea5e9; border-radius: 100px; padding: 3px 10px; font-size: 10px; font-weight: 700; color: white; }
+.pm-title { font-size: 13px; font-weight: 700; color: white; }
+.pm-section { padding: 10px 14px; border-bottom: 1px solid #f1f5f9; }
+.pm-stitle  { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: #94a3b8; margin-bottom: 6px; }
+.pm-text    { font-size: 11px; color: #64748b; line-height: 1.4; }
+.pm-insight { background: #f0f9ff; border-radius: 6px; padding: 8px 10px; font-size: 11px; color: #0369a1; }
+.pm-step    { display: flex; gap: 7px; margin-bottom: 5px; font-size: 11px; color: #475569; align-items: flex-start; }
+.pm-step-num { width: 16px; height: 16px; border-radius: 50%; background: #0ea5e9; color: white; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.pm-rec { display: flex; gap: 7px; margin-bottom: 5px; font-size: 11px; color: #1e293b; }
+.pm-rec-n { width: 16px; height: 16px; border-radius: 50%; background: #0ea5e9; color: white; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.pm-feat { font-size: 9.5px; background: #e0f2fe; color: #0369a1; border-radius: 4px; padding: 2px 6px; display: inline-block; margin-top: 2px; font-weight: 700; }
+
+.sidebar-labels { flex: 1; display: flex; flex-direction: column; gap: 10px; padding-top: 6px; }
+.sl-row { display: flex; align-items: flex-start; gap: 12px; }
+.sl-arrow { width: 24px; height: 24px; background: rgba(255,255,255,.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 4px; }
+.sl-body .sl-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.sl-body .sl-desc  { font-size: 11.5px; color: rgba(255,255,255,.55); line-height: 1.4; }
+
+/* ── Analyses (Slide 9) ───────────────────────── */
+.analyses-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; max-width: 860px; margin-top: 20px; }
+.an-card {
+  background: rgba(255,255,255,.04); border: 1.5px solid rgba(255,255,255,.1);
+  border-radius: 12px; padding: 16px 18px; display: flex; gap: 12px;
+}
+.an-icon { font-size: 22px; flex-shrink: 0; }
+.an-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.an-desc { font-size: 11.5px; color: rgba(255,255,255,.55); line-height: 1.4; margin-bottom: 7px; }
+.an-tag  { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; padding: 2px 8px; border-radius: 100px; }
+
+/* ── Future (Slide 10) ────────────────────────── */
+.future-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; max-width: 820px; margin-top: 24px; }
+.fq-card {
+  background: rgba(255,255,255,.04); border: 1.5px solid rgba(255,255,255,.08);
+  border-radius: 14px; padding: 20px 20px; position: relative; overflow: hidden;
+}
+.fq-card::before { content: attr(data-n); position: absolute; top: 12px; right: 14px; font-size: 28px; font-weight: 900; opacity: .06; }
+.fq-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .7px; margin-bottom: 8px; opacity: .5; }
+.fq-q   { font-size: 14px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+.fq-a   { font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.5; }
+
+/* ── Closing (Slide 11) ───────────────────────── */
+.closing-card {
+  background: linear-gradient(135deg, rgba(56,189,248,.1), rgba(139,92,246,.08));
+  border: 1.5px solid rgba(56,189,248,.2);
+  border-radius: 20px; padding: 40px 48px; max-width: 680px;
+  text-align: center;
+}
+.closing-icon { font-size: 48px; margin-bottom: 20px; }
+.closing-roles { display: flex; gap: 10px; justify-content: center; margin-top: 28px; }
+.role-chip {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+  border-radius: 100px; padding: 7px 16px; font-size: 12px; font-weight: 600;
+}
+
+/* ── Divider ──────────────────────────────────── */
+.hdiv { width: 48px; height: 3px; border-radius: 2px; margin: 14px 0; }
+.vdiv { width: 100%; height: 1px; background: rgba(255,255,255,.06); margin: 16px 0; }
+
+/* ── Mobile ──────────────────────────────────── */
+@media (max-width: 768px) {
+  html, body { overflow: hidden; }
+
+  .slide {
+    padding: 20px 16px 90px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .slide > * { max-width: 100% !important; }
+
+  /* Typography */
+  .h1 { font-size: 26px; }
+  .h2 { font-size: 20px; }
+  .lead { font-size: 13px; }
+
+  /* Slide 1 */
+  .s1-grid { grid-template-columns: 1fr 1fr; max-width: 100%; margin-top: 24px; }
+  .s1-chip { font-size: 11px; }
+
+  /* Slide 2 — Chain */
+  .chain { flex-direction: column; gap: 8px; max-width: 100%; margin-top: 16px; }
+  .chain-step { flex-direction: row; align-items: center; gap: 10px; }
+  .chain-step + .chain-step::before { display: none; }
+  .chain-box { display: flex; flex-direction: row; align-items: center; gap: 8px; padding: 10px 12px; text-align: left; }
+  .chain-icon { font-size: 18px; margin: 0; flex-shrink: 0; }
+  .chain-data { font-size: 12px; }
+  .chain-day { font-size: 10px; }
+  .chain-arrow { display: none; }
+
+  /* Slide 4 — Map */
+  .map-wrap {
+    transform: scale(0.46);
+    transform-origin: top left;
+    margin-bottom: -152px;
+    flex-shrink: 0;
+  }
+
+  /* Slide 5 — Personas */
+  .persona-grid { grid-template-columns: 1fr; gap: 12px; }
+
+  /* Slide 6 — Case */
+  .case-grid { grid-template-columns: 1fr; gap: 16px; max-width: 100%; }
+
+  /* Slide 8 — Sidebar */
+  .sidebar-demo { flex-direction: column; max-width: 100%; }
+  .panel-mock { width: 100%; }
+  .sidebar-labels { padding-top: 0; }
+
+  /* Slide 9 — Analyses */
+  .analyses-intro { grid-template-columns: 1fr; max-width: 100%; }
+
+  /* Slide 10 — Future */
+  .future-grid { grid-template-columns: 1fr; max-width: 100%; }
+
+  /* Slide 11 — Closing */
+  .closing-card { padding: 24px 18px; max-width: 100%; }
+  .closing-roles { flex-wrap: wrap; justify-content: center; }
+  .role-chip { font-size: 11px; padding: 6px 12px; }
+
+  /* Nav */
+  .nav { bottom: 12px; padding: 6px 12px; }
+}
+
+@media (max-width: 480px) {
+  .slide { padding: 16px 12px 80px; }
+  .s1-grid { grid-template-columns: 1fr; }
+  .map-wrap { transform: scale(0.38); margin-bottom: -174px; }
+}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<!-- ━━ SLIDE 1 — TÍTULO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="slide active" id="s1">
+  <div class="s1-bg"></div>
+  <div style="position:relative;text-align:center;max-width:700px">
+    <div class="logo-chip">⬡ RankMyApp</div>
+    <div class="title-tag">Para Estrategistas</div>
+    <div class="h1" style="margin-bottom:18px">
+      Causa x Efeito<br>
+      <span class="accent">em Apps</span>
+    </div>
+    <div class="lead" style="max-width:520px;margin:0 auto">
+      Por que o que acontece em um app não é coincidência —<br>
+      e como enxergar as conexões antes que o cliente perceba
+    </div>
+    <div class="s1-grid">
+      <div class="s1-chip"><strong>📊 Case Prático</strong>Do bug ao churn — o efeito dominó</div>
+      <div class="s1-chip"><strong>🗺 Teoria Causal</strong>Conexões que os dados revelam</div>
+      <div class="s1-chip"><strong>🔬 Análises Extra</strong>Além das features da plataforma</div>
+    </div>
+  </div>
+</div>
+
+<!-- ━━ SLIDE 2 — O EFEITO DOMINÓ ━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="slide" id="s2">
+  <div class="label sky">Case Prático</div>
+  <div class="h2" style="margin-bottom:6px">O Efeito Dominó</div>
+  <div class="lead" style="margin-bottom:4px">
+    <strong>AppFinance</strong> — atualização 3.1.2 · 15 de novembro de 2024
+  </div>
+  <div style="font-size:12px;color:rgba(255,255,255,.35);margin-bottom:28px">Uma atualização rotineira. Ninguém esperava o que viria a seguir.</div>
+
+  <div class="chain">
+    <div class="chain-step bad">
+      <div class="chain-box">
+        <div class="chain-icon">🔴</div>
+        <div class="chain-dim" style="color:#f87171">Performance</div>
+        <div class="chain-data" style="color:#f87171">Crash +200%</div>
+        <div class="chain-day">Dia 0 · release</div>
+      </div>
+      <div class="chain-arrow">causa imediata</div>
+    </div>
+    <div class="chain-step bad">
+      <div class="chain-box">
+        <div class="chain-icon">💬</div>
+        <div class="chain-dim" style="color:#f87171">Reviews</div>
+        <div class="chain-data" style="color:#f87171">Negativos +340%</div>
+        <div class="chain-day">Dias 3–7</div>
+      </div>
+      <div class="chain-arrow">3 dias de delay</div>
+    </div>
+    <div class="chain-step warn">
+      <div class="chain-box">
+        <div class="chain-icon">⭐</div>
+        <div class="chain-dim" style="color:#fbbf24">Rating</div>
+        <div class="chain-data" style="color:#fbbf24">4,6 → 3,9</div>
+        <div class="chain-day">Semanas 2–3</div>
+      </div>
+      <div class="chain-arrow">visibilidade cai</div>
+    </div>
+    <div class="chain-step warn">
+      <div class="chain-box">
+        <div class="chain-icon">📉</div>
+        <div class="chain-dim" style="color:#fbbf24">Downloads</div>
+        <div class="chain-data" style="color:#fbbf24">−23%</div>
+        <div class="chain-day">Semana 4–5</div>
+      </div>
+      <div class="chain-arrow">funil quebrando</div>
+    </div>
+    <div class="chain-step sink">
+      <div class="chain-box">
+        <div class="chain-icon">🚪</div>
+        <div class="chain-dim" style="color:#a78bfa">Churn</div>
+        <div class="chain-data" style="color:#a78bfa">+18% base</div>
+        <div class="chain-day">Semana 6–7</div>
+      </div>
+      <div class="chain-arrow">custo real do bug</div>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;max-width:720px;text-align:center">
+    <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:12px 20px;font-size:12.5px;color:rgba(255,255,255,.7);line-height:1.6">
+      💡 <strong>Insight:</strong> A queda de 4,6 → 3,9 estrelas representa <strong style="color:#fbbf24">−15 a −20% na conversão orgânica</strong> — não os 2% que parecem. Cada 0,1 estrela a menos eleva o CPI em 2–3%. O custo real do bug não foi técnico — foi de receita.
+    </div>
+  </div>
+</div>
+
+<!-- ━━ SLIDE 3 — DEMO PAUSE 1 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="slide demo-slide" id="s3">
+  <div class="demo-icon">⏸</div>
+  <div class="demo-badge">Demonstração ao vivo</div>
+  <div class="h2" style="margin-bottom:12px;text-align:center">Vamos ver isso no<br><span class="accent">Mapa de Impacto</span></div>
+  <div class="lead" style="text-align:center;max-width:460px">
+    Persona: <strong style="color:#0ea5e9">Customer Success</strong><br>
+    Cenário: <em>"Nota do app caindo"</em>
+  </div>
+  <div class="demo-hint">
+    No mapa, selecione CS → "Nota do app caindo" e observe como o grafo ilumina a cadeia causal — de Performance até Aquisição. Em seguida, clique nos nós para explorar o diagnóstico de cada dimensão.
+  </div>
+</div>
+
+<!-- ━━ SLIDE 4 — TEORIA DO IMPACTO CAUSAL ━━━━━━━━━━━━━━━━━━━ -->
+<div class="slide" id="s4">
+  <div class="label sky">Teoria</div>
+  <div class="h2" style="margin-bottom:6px">Cada problema tem uma <span class="accent">origem</span> — e um destino</div>
+  <div class="lead" style="margin-bottom:20px;max-width:640px">Não são coincidências. São relações causais mensuráveis que se repetem em todos os apps.</div>
+
+  <!-- Mini map SVG -->
+  <div class="map-wrap">
+    <svg class="map-svg" viewBox="0 0 680 280">
+      <defs>
+        <marker id="ar" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="rgba(255,255,255,0.2)"/>
+        </marker>
+        <marker id="ar-act" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#38bdf8"/>
+        </marker>
+      </defs>
+      <!-- perf → ratings -->
+      <line x1="118" y1="50" x2="198" y2="50" stroke="#ef4444" stroke-width="1.5" marker-end="url(#ar)"/>
+      <!-- perf → reviews -->
+      <line x1="70" y1="72" x2="70" y2="148" stroke="#ef4444" stroke-width="1.5" marker-end="url(#ar)"/>
+      <!-- perf → retencao -->
+      <line x1="118" y1="60" x2="336" y2="148" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ar)"/>
+      <!-- ratings → visib -->
+      <line x1="260" y1="50" x2="386" y2="50" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#ar)"/>
+      <!-- ratings → aquis -->
+      <line x1="280" y1="72" x2="490" y2="148" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ar)"/>
+      <!-- reviews → aquis -->
+      <line x1="118" y1="170" x2="462" y2="170" stroke="#64748b" stroke-width="1.5" marker-end="url(#ar)"/>
+      <!-- reviews → churn -->
+      <line x1="118" y1="180" x2="526" y2="224" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ar)"/>
+      <!-- concorr → visib -->
+      <line x1="206" y1="230" x2="386" y2="70" stroke="#10b981" stroke-width="1.5" marker-end="url(#ar)"/>
+      <!-- visib → aquis -->
+      <line x1="448" y1="72" x2="490" y2="148" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#ar)"/>
+      <!-- retencao → engaj -->
+      <line x1="398" y1="170" x2="462" y2="170" stroke="none"/>
+      <line x1="380" y1="170" x2="462" y2="170" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#ar)"/>
+      <!-- engaj → churn -->
+      <line x1="530" y1="180" x2="530" y2="215" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#ar)"/>
+      <!-- aquis → receita -->
+      <line x1="552" y1="50" x2="596" y2="125" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#ar)"/>
+      <!-- churn → receita -->
+      <line x1="560" y1="238" x2="598" y2="183" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ar)"/>
+    </svg>
+    <!-- Nodes -->
+    <div class="map-node" style="left:10px;top:28px;border-color:#ef444450;color:#f87171;background:#ef444410;width:120px">
+      <div class="mn-icon">⚡</div>Performance
+    </div>
+    <div class="map-node" style="left:200px;top:28px;border-color:#f59e0b50;color:#fbbf24;background:#f59e0b10;width:100px">
+      <div class="mn-icon">⭐</div>Rating
+    </div>
+    <div class="map-node" style="left:10px;top:145px;border-color:#64748b50;color:#94a3b8;background:#64748b10;width:120px">
+      <div class="mn-icon">💬</div>Reviews
+    </div>
+    <div class="map-node" style="left:330px;top:145px;border-color:#8b5cf650;color:#a78bfa;background:#8b5cf610;width:90px">
+      <div class="mn-icon">🔁</div>Retenção
+    </div>
+    <div class="map-node" style="left:140px;top:205px;border-color:#10b98150;color:#34d399;background:#10b98110;width:90px">
+      <div class="mn-icon">🏆</div>Concorr.
+    </div>
+    <div class="map-node" style="left:388px;top:28px;border-color:#f59e0b50;color:#fbbf24;background:#f59e0b10;width:100px">
+      <div class="mn-icon">👁</div>Visibilidade
+    </div>
+    <div class="map-node" style="left:462px;top:145px;border-color:#8b5cf650;color:#a78bfa;background:#8b5cf610;width:90px">
+      <div class="mn-icon">📲</div>Engajamento
+    </div>
+    <div class="map-node" style="left:462px;top:28px;border-color:#38bdf850;color:#38bdf8;background:#38bdf810;width:90px">
+      <div class="mn-icon">⬇</div>Aquisição
+    </div>
+    <div class="map-node" style="left:490px;top:215px;border-color:#ef444450;color:#f87171;background:#ef444410;width:80px">
+      <div class="mn-icon">🚪</div>Churn
+    </div>
+    <div class="map-node" style="left:590px;top:120px;border-color:#10b98150;color:#34d399;background:#10b98110;width:80px">
+      <div class="mn-icon">💰</div>Receita
+    </div>
+  </div>
+
+  <div style="display:flex;gap:20px;max-width:680px">
+    <div style="flex:1;background:rgba(255,255,255,.04);border-radius:10px;padding:12px 14px;font-size:12px;color:rgba(255,255,255,.65);line-height:1.5">
+      <strong style="color:white;display:block;margin-bottom:4px">🔴 Causas raiz</strong>
+      Performance e Concorrentes são os nós onde os problemas se originam — nunca ficam sozinhos por muito tempo.
+    </div>
+    <div style="flex:1;background:rgba(255,255,255,.04);border-radius:10px;padding:12px 14px;font-size:12px;color:rgba(255,255,255,.65);line-height:1.5">
+      <strong style="color:white;display:block;margin-bottom:4px">🔀 Amplificadores</strong>
+      Rating, Reviews, Visibilidade e Engajamento amplificam ou absorvem o impacto — dependendo da ação tomada.
+    </div>
+    <div style="flex:1;background:rgba(255,255,255,.04);border-radius:10px;padding:12px 14px;font-size:12px;color:rgba(255,255,255,.65);line-height:1.5">
+      <strong style="color:white;display:block;margin-bottom:4px">🎯 Desfechos</strong>
+      Aquisição, Churn e <strong style="color:#34d399">Receita</strong> são o resultado de tudo que acontece acima — onde o negócio sente o impacto real.
+    </div>
+  </div>
+</div>
+
+<!-- ━━ SLIDE 5 — AS 3 PERSONAS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="slide" id="s5">
+  <div class="label sky">Personas</div>
+  <div class="h2" style="margin-bottom:8px">Três perspectivas, <span class="accent">uma mesma cadeia</span></div>
+  <div class="lead" style="margin-bottom:4px;max-width:600px">Cada persona entra no problema por um ângulo diferente — mas o mapa causal conecta todas elas.</div>
+
+  <div class="persona-grid">
+    <div class="persona-card cs">
+      <div class="pc-icon">🤝</div>
+      <div class="pc-name" style="color:#38bdf8">Customer Success</div>
+      <div class="pc-tag">Diagnóstico e retenção</div>
+      <div class="vdiv"></div>
+      <div class="pc-entry">
+        <strong>Vê o problema quando</strong>
+        O cliente reclama. Nota caiu. Reviews dispararam. Churn ameaça a conta.
+      </div>
+      <div class="pc-entry" style="margin-top:8px">
+        <strong>Objetivo no mapa</strong>
+        Entender a causa raiz antes da call de retenção — e chegar com diagnóstico, não com suposição.
+      </div>
+    </div>
+    <div class="persona-card mkt">
+      <div class="pc-icon">📣</div>
+      <div class="pc-name" style="color:#f97316">Marketing</div>
+      <div class="pc-tag">Crescimento e aquisição</div>
+      <div class="vdiv"></div>
+      <div class="pc-entry">
+        <strong>Vê o problema quando</strong>
+        Downloads estagnaram. CPI subiu. Concorrente roubou posição. CVR caiu.
+      </div>
+      <div class="pc-entry" style="margin-top:8px">
+        <strong>Objetivo no mapa</strong>
+        Separar o problema orgânico do problema de mídia — e redirecionar o budget antes de desperdiçar.
+      </div>
+    </div>
+    <div class="persona-card prod">
+      <div class="pc-icon">⚙️</div>
+      <div class="pc-name" style="color:#8b5cf6">Produto</div>
+      <div class="pc-tag">Qualidade e roadmap</div>
+      <div class="vdiv"></div>
+      <div class="pc-entry">
+        <strong>Vê o problema quando</strong>
+        DAU caiu sem razão aparente. Feature nova não engajou. D1 abaixo do esperado.
+      </div>
+      <div class="pc-entry" style="margin-top:8px">
+        <strong>Objetivo no mapa</strong>
+        Correlacionar queda de retenção com feedback de usuário — e priorizar o backlog com dado real.
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;font-size:12px;color:rgba(255,255,255,.4);text-align:center">
+    O mapa revela onde cada persona entra na cadeia — e como as ações de uma afetam as outras
+  </div>
+</div>
+
+<!-- ━━ SLIDE 6 — MARKETING CASE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="slide" id="s6">
+  <div class="label orange">Marketing em Ação</div>
+  <div class="h2" style="margin-bottom:8px">Downloads Estagnados — <span class="orange">6 semanas sem crescer</span></div>
+  <div class="lead" style="margin-bottom:20px">AppFinance · Budget de mídia inalterado · Nenhuma campanha mudou. Mas os downloads pararam.</div>
+
+  <div class="case-grid">
+    <div>
+      <div class="case-box">
+        <div class="case-box-title">📊 O que os dados mostram</div>
+        <div class="metric-row">
+          <span class="metric-name">Downloads (vs 6 sem. atrás)</span>
+          <span class="metric-val red">−28%</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-name">Position keyword principal</span>
+          <span class="metric-val red">Top 3 → Top 9</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-name">Rating atual</span>
+          <span class="metric-val red">3,9 ⭐</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-name">CVR da página do app</span>
+          <span class="metric-val red">18% (ref: 25%)</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-name">Concorrente A — downloads</span>
+          <span class="metric-val green">+34%</span>
+        </div>
+      </div>
+      <div style="margin-top:10px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);border-radius:10px;padding:12px 14px;font-size:12px;color:rgba(255,255,255,.7)">
+        💡 Rating de 3,9 exclui o app de usuários que filtram por 4+ estrelas no Play Store — <strong>impacto invisível no orgânico</strong>.
+      </div>
+    </div>
+    <div class="case-box">
+      <div class="case-box-title">🗺 Diagnóstico causal</div>
+      <div class="diag-step">
+        <div class="diag-num" style="background:#10b981">1</div>
+        <div class="diag-text"><strong style="color:white">Concorrentes</strong><br>Concorrente A ganhou 3 posições nas keywords-chave — capturando tráfego que era seu</div>
+      </div>
+      <div class="diag-step">
+        <div class="diag-num" style="background:#f59e0b">2</div>
+        <div class="diag-text"><strong style="color:white">Rating</strong><br>Queda para 3,9 ativa filtro de busca — parte do público qualificado nunca te encontra</div>
+      </div>
+      <div class="diag-step">
+        <div class="diag-num" style="background:#fbbf24">3</div>
+        <div class="diag-text"><strong style="color:white">Visibilidade</strong><br>Share of voice em busca orgânica caiu 40% nas keywords de maior volume</div>
+      </div>
+      <div class="diag-step">
+        <div class="diag-num" style="background:#38bdf8">4</div>
+        <div class="diag-text"><strong style="color:white">Aquisição</strong><br>CVR de 18% → cada R$ de mídia gera 28% menos downloads do que deveria</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ━━ SLIDE 7 — DEMO PAUSE 2 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="slide demo-slide" id="s7">
+  <div class="demo-icon">⏸</div>
+  <div class="demo-badge" style="background:#f97316">Demonstração ao vivo</div>
+  <div class="h2" style="margin-bottom:12px;text-align:center">Persona <span class="orange">Marketing</span><br>no Mapa de Impacto</div>
+  <div class="lead" style="text-align:center;max-width:460px">
+    Cenário: <em>"Downloads estagnados"</em><br>
+    Observe o caminho Concorrentes → Visibilidade → Aquisição
+  </div>
+  <div class="demo-hint">
+    Selecione a persona Marketing → "Downloads estagnados". Explore o grafo e clique nos nós Concorrentes, Visibilidade e Aquisição para ver o diagnóstico detalhado de cada dimensão. Em seguida, role o painel para ver o plano de ação e as análises complementares.
+  </div>
+</div>
+
+<!-- ━━ SLIDE 8 — COMPONENTES DA BARRA LATERAL ━━━━━━━━━━━━━━━━ -->
+<div class="slide" id="s8">
+  <div class="label sky">Interface</div>
+  <div class="h2" style="margin-bottom:18px">O que a barra lateral entrega</div>
+
+  <div class="sidebar-demo">
+    <!-- Panel mockup -->
+    <div class="panel-mock">
+      <div class="pm-head">
+        <div class="pm-badge">1 Contexto</div>
+        <div class="pm-title" style="font-size:11px;margin-left:4px">Downloads estagnados</div>
+      </div>
+      <div class="pm-section" style="background:#fff9f5">
+        <div class="pm-stitle">📖 Narrativa do problema</div>
+        <div class="pm-text">Estagnação sem mudança de investimento quase sempre tem causa orgânica: queda de ranking ou nota abaixo do threshold de conversão.</div>
+      </div>
+      <div class="pm-section" style="border-top:2px solid #0ea5e920">
+        <div class="pm-stitle">💡 2 Insight de Mercado</div>
+        <div class="pm-insight">Apps que caem do top 3 para top 10 podem perder 60–70% do tráfego orgânico da keyword. (AppTweak, 2025)</div>
+      </div>
+      <div class="pm-section" style="border-top:2px solid #0ea5e920">
+        <div class="pm-stitle">🔍 3 Diagnóstico — investigar com a plataforma</div>
+        <div class="pm-step"><div class="pm-step-num">1</div><div>Quem subiu de posição?<br><span class="pm-feat">📦 Competitive Intelligence</span></div></div>
+        <div class="pm-step"><div class="pm-step-num">2</div><div>Rating caiu abaixo de 4,0?<br><span class="pm-feat">📦 Ratings Overview</span></div></div>
+        <div class="pm-step"><div class="pm-step-num">3</div><div>Keywords perderam rank?<br><span class="pm-feat">📦 Keyword Analysis</span></div></div>
+      </div>
+      <div class="pm-section" style="border-top:2px solid #0ea5e920">
+        <div class="pm-stitle">🚀 4 Plano de Ação</div>
+        <div class="pm-rec"><div class="pm-rec-n">1</div><div>Diagnosticar saúde do portfólio de keywords<br><span class="pm-feat">📦 Keyword Expansion</span></div></div>
+        <div class="pm-rec"><div class="pm-rec-n">2</div><div>Verificar se rating caiu abaixo de 4,0<br><span class="pm-feat">📦 Ratings Overview</span></div></div>
+      </div>
+    </div>
+
+    <!-- Labels -->
+    <div class="sidebar-labels">
+      <div class="sl-row">
+        <div class="sl-arrow" style="background:rgba(249,115,22,.15)">1</div>
+        <div class="sl-body">
+          <div class="sl-title">📖 Contexto</div>
+          <div class="sl-desc">A narrativa do cenário — o "o quê" e o "por quê" do problema. Prepara o estrategista para uma conversa estratégica com o cliente sem precisar de análise prévia.</div>
+        </div>
+      </div>
+      <div class="sl-row">
+        <div class="sl-arrow" style="background:rgba(56,189,248,.15)">2</div>
+        <div class="sl-body">
+          <div class="sl-title">💡 Insight de Mercado</div>
+          <div class="sl-desc">Benchmarks do setor com fontes citadas. Transforma a conversa de opinião para dado — "Apps no top 3 recebem 3–5x mais cliques que o top 10 (AppTweak, 2025)".</div>
+        </div>
+      </div>
+      <div class="sl-row">
+        <div class="sl-arrow" style="background:rgba(139,92,246,.15)">3</div>
+        <div class="sl-body">
+          <div class="sl-title">🔍 Diagnóstico</div>
+          <div class="sl-desc">Roteiro de investigação orientado pelas features da RankMyApp Tool — cada hipótese é validada com a feature certa, transformando suspeita em evidência antes da call com o cliente.</div>
+        </div>
+      </div>
+      <div class="sl-row">
+        <div class="sl-arrow" style="background:rgba(16,185,129,.15)">4</div>
+        <div class="sl-body">
+          <div class="sl-title">🚀 Plano de Ação</div>
+          <div class="sl-desc">Features da RankMyApp conectadas ao diagnóstico — cada recomendação tem a ação específica, o como e a feature que entrega. Pronto para apresentar ao cliente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ━━ SLIDE 9 — ANÁLISES COMPLEMENTARES ━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="slide" id="s9">
+  <div class="label sky">Novidade</div>
+  <div class="h2" style="margin-bottom:8px">Além das features — <span class="accent">Análises Complementares</span></div>
+  <div class="lead" style="margin-bottom:20px;max-width:680px">
+    O estrategista agora pode selecionar <strong>entregas de diagnóstico adicionais</strong> que enriquecem a proposta — análises que a plataforma não cobre diretamente, mas que fazem parte da entrega de valor.
+  </div>
+
+  <div class="analyses-intro">
+    <div class="an-card">
+      <div class="an-icon">📊</div>
+      <div>
+        <div class="an-name">Benchmark de Rating por Segmento</div>
+        <div class="an-desc">Compara nota atual com top 5 concorrentes diretos no mesmo segmento e período.</div>
+        <span class="an-tag" style="background:#f1f5f9;color:#475569">Benchmark</span>
+      </div>
+    </div>
+    <div class="an-card">
+      <div class="an-icon">👥</div>
+      <div>
+        <div class="an-name">Análise de DAU/MAU com Cohort Breakdown</div>
+        <div class="an-desc">Distingue queda de novos usuários entrando vs base existente saindo — solução completamente diferente.</div>
+        <span class="an-tag" style="background:#e0f2fe;color:#0369a1">DAU/MAU</span>
+      </div>
+    </div>
+    <div class="an-card">
+      <div class="an-icon">📢</div>
+      <div>
+        <div class="an-name">Análise de Mídia: Paid vs Organic</div>
+        <div class="an-desc">Decomposição de downloads por canal — identifica se o orgânico secou ou se o paid perdeu eficiência.</div>
+        <span class="an-tag" style="background:#fff7ed;color:#c2410c">Mídia</span>
+      </div>
+    </div>
+    <div class="an-card">
+      <div class="an-icon">📉</div>
+      <div>
+        <div class="an-name">Análise de Cohort de Churn</div>
+        <div class="an-desc">Cohort de usuários que desinstalaram após release vs cohorts anteriores — D1/D7/D30.</div>
+        <span class="an-tag" style="background:#f3e8ff;color:#7c3aed">Cohort</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:18px;max-width:720px;text-align:center">
+    <div style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);border-radius:10px;padding:12px 20px;font-size:12.5px;color:rgba(255,255,255,.7);line-height:1.6">
+      No mapa, cada cenário tem 3 análises pré-mapeadas — o estrategista <strong>seleciona as que fazem sentido</strong> para aquele cliente e monta o plano de entrega personalizado.
+    </div>
+  </div>
+</div>
+
+<!-- ━━ SLIDE 10 — PERGUNTAS PARA O FUTURO ━━━━━━━━━━━━━━━━━━━━ -->
+<div class="slide" id="s10">
+  <div class="label sky">Visão de Futuro</div>
+  <div class="h2" style="margin-bottom:8px">Como podemos <span class="accent">melhorar juntos?</span></div>
+  <div class="lead" style="margin-bottom:20px;max-width:640px">O mapa é o começo. A inteligência vem de registrar, aprender e iterar com base na experiência do time.</div>
+
+  <div class="future-grid">
+    <div class="fq-card" data-n="01">
+      <div class="fq-tag sky">Jornadas Inteligentes</div>
+      <div class="fq-q">E se o mapa sugerisse automaticamente o próximo cenário com base no histórico do cliente?</div>
+      <div class="fq-a">Cada visita registrada, cada análise selecionada, cada plano de ação executado vira sinal para predição.</div>
+    </div>
+    <div class="fq-card" data-n="02">
+      <div class="fq-tag orange">Registro de Planos de Ação</div>
+      <div class="fq-q">E se cada plano de ação executado virasse dado estruturado — com resultado medido?</div>
+      <div class="fq-a">Plano → execução → métrica → aprendizado. O loop fecha quando o estrategista registra o que funcionou.</div>
+    </div>
+    <div class="fq-card" data-n="03">
+      <div class="fq-tag" style="color:#a78bfa">Tarefas do Time</div>
+      <div class="fq-q">E se as tarefas do time fossem insumo para sugerir novas jornadas e análises prioritárias?</div>
+      <div class="fq-a">Onde o time gasta mais tempo? Quais cenários recorrem? Esses padrões revelam onde o produto deve evoluir.</div>
+    </div>
+    <div class="fq-card" data-n="04">
+      <div class="fq-tag green">Modelos Preditivos</div>
+      <div class="fq-q">E se o sistema soubesse — antes do cliente — que um problema está se formando?</div>
+      <div class="fq-a">Diagnóstico reativo → diagnóstico proativo. A visão holística é o que torna isso possível.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ━━ SLIDE 11 — ENCERRAMENTO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="slide" id="s11">
+  <div class="closing-card">
+    <div class="closing-icon">🧠</div>
+    <div class="h2" style="margin-bottom:14px">O papel dos Estrategistas<br>nessa <span class="accent">jornada inteligente</span></div>
+    <div class="lead" style="margin-bottom:20px">
+      A plataforma conecta os pontos. Os dados revelam os padrões. Mas é a <strong>experiência prática do estrategista</strong> que transforma diagnóstico em ação — e ação em resultado mensurável.
+    </div>
+    <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:14px 18px;font-size:13px;color:rgba(255,255,255,.75);line-height:1.6;text-align:left;margin-bottom:20px">
+      Cada análise selecionada, cada plano executado, cada insight registrado — <strong>é insumo para construirmos modelos de predição cada vez mais precisos.</strong> Vocês são os parceiros dessa jornada.
+    </div>
+    <div class="closing-roles">
+      <div class="role-chip" style="color:#38bdf8">📊 Diagnosticar com dados</div>
+      <div class="role-chip" style="color:#f97316">🎯 Agir com precisão</div>
+      <div class="role-chip" style="color:#10b981">🔄 Registrar e aprender</div>
+      <div class="role-chip" style="color:#a78bfa">🚀 Evoluir o modelo</div>
+    </div>
+  </div>
+  <div style="margin-top:24px;font-size:12px;color:rgba(255,255,255,.25)">
+    Mapa de Impacto RankMyApp · mi-tool-hub.vercel.app/aso-impact-map.html
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- Navigation -->
+<nav class="nav">
+  <button class="nav-btn" id="prev" onclick="go(-1)">←</button>
+  <div class="nav-dots" id="dots"></div>
+  <button class="nav-btn" id="next" onclick="go(1)">→</button>
+  <span class="nav-count" id="count"></span>
+</nav>
+
+<script>
+const slides = document.querySelectorAll('.slide')
+const total  = slides.length
+let cur = 0
+
+function render() {
+  slides.forEach((s,i) => s.classList.toggle('active', i === cur))
+  document.getElementById('prev').disabled = cur === 0
+  document.getElementById('next').disabled = cur === total - 1
+  document.getElementById('count').textContent = `${cur+1} / ${total}`
+  buildDots()
+}
+
+function buildDots() {
+  const c = document.getElementById('dots')
+  c.innerHTML = ''
+  slides.forEach((_,i) => {
+    const d = document.createElement('div')
+    d.className = 'dot' + (i === cur ? ' on' : '')
+    d.onclick = () => { cur = i; render() }
+    c.appendChild(d)
+  })
+}
+
+function go(dir) {
+  const n = cur + dir
+  if (n >= 0 && n < total) { cur = n; render() }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1) }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); go(-1) }
+})
+
+render()
+</script>
+</body>
+</html>
