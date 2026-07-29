@@ -1,0 +1,670 @@
+{
+  "version": "2.0.0",
+  "generated_at": "2026-07-29T00:00:00Z",
+  "dimensions": {
+    "performance": {
+      "label": "Performance Técnica",
+      "icon": "⚡",
+      "color": "#ef4444",
+      "description": "Falhas técnicas — crashes, ANRs, lentidão — afetam a percepção de qualidade. São a causa raiz mais subestimada de problemas de satisfação, retenção e churn.",
+      "impacts": ["ratings", "reviews", "retencao"],
+      "causedBy": [],
+      "position": {"x": 210, "y": 180},
+      "features": [
+        {"name": "Performance Impact", "plan": "pro", "icon": "⚡", "desc": "Correlaciona falhas técnicas com queda de rating e reviews negativos"},
+        {"name": "App Sentinel", "plan": "advanced", "icon": "🛡️", "desc": "Monitoramento contínuo com alertas de anomalias em métricas de qualidade"}
+      ]
+    },
+    "ratings": {
+      "label": "Ratings",
+      "icon": "⭐",
+      "color": "#f59e0b",
+      "description": "A nota do app é fator crítico de decisão de download. Apps com nota abaixo de 4.0 perdem mais de 70% dos usuários potenciais antes mesmo de chegar à página de detalhes.",
+      "impacts": ["aquisicao", "visibilidade"],
+      "causedBy": ["performance"],
+      "position": {"x": 450, "y": 100},
+      "features": [
+        {"name": "Ratings Analysis", "plan": "starter", "icon": "⭐", "desc": "Evolução detalhada de ratings por versão, país e dispositivo"},
+        {"name": "Ratings Overview", "plan": "starter", "icon": "📊", "desc": "Visão geral comparativa de ratings Google e Apple"},
+        {"name": "Comparative Analysis", "plan": "advanced", "icon": "🔗", "desc": "Satisfação e nota comparadas com concorrentes diretos"}
+      ]
+    },
+    "reviews": {
+      "label": "Reviews",
+      "icon": "💬",
+      "color": "#3b82f6",
+      "description": "Avaliações são prova social — influenciam a decisão de download e revelam os motivos de insatisfação que levam ao churn. São tanto sinal quanto causa.",
+      "impacts": ["aquisicao", "churn"],
+      "causedBy": ["performance"],
+      "position": {"x": 450, "y": 270},
+      "features": [
+        {"name": "Reviews Analysis", "plan": "starter", "icon": "💬", "desc": "Análise profunda de avaliações por tema, sentimento e versão"},
+        {"name": "Review Brief", "plan": "advanced", "icon": "📝", "desc": "Síntese inteligente semanal de reviews com IA generativa"},
+        {"name": "Words", "plan": "pro", "icon": "🏷️", "desc": "Palavras-chave mais frequentes nos comentários por período"},
+        {"name": "Reviews Replies", "plan": "pro", "icon": "↩️", "desc": "Respostas a avaliações para recuperação ativa de usuários insatisfeitos"},
+        {"name": "Comparative Analysis", "plan": "advanced", "icon": "🔗", "desc": "Sentimento e temas comparados com concorrentes"}
+      ]
+    },
+    "retencao": {
+      "label": "Retenção",
+      "icon": "🔁",
+      "color": "#8b5cf6",
+      "description": "Probabilidade de o usuário voltar após a primeira sessão. Um crash na onboarding é suficiente para perder o usuário para sempre — sem deixar rastro nos dados.",
+      "impacts": ["engajamento", "receita"],
+      "causedBy": ["performance"],
+      "position": {"x": 210, "y": 360},
+      "features": [
+        {"name": "App Foresight", "plan": "advanced", "icon": "🔮", "desc": "Previsão de crescimento e risco de queda de retenção com cenários"},
+        {"name": "Performance Impact", "plan": "pro", "icon": "⚡", "desc": "Falhas técnicas que impactam o retorno do usuário"},
+        {"name": "App Sentinel", "plan": "advanced", "icon": "🛡️", "desc": "Alertas de anomalias em métricas de retenção (D1, D7, D30)"}
+      ]
+    },
+    "engajamento": {
+      "label": "Engajamento",
+      "icon": "📈",
+      "color": "#6366f1",
+      "description": "Frequência e profundidade do uso — DAU, MAU, sessões e stickiness. Baixo engajamento é o precursor silencioso do churn: o usuário para de usar antes de desinstalar.",
+      "impacts": ["churn", "receita"],
+      "causedBy": ["retencao"],
+      "position": {"x": 450, "y": 430},
+      "features": [
+        {"name": "App Foresight", "plan": "advanced", "icon": "🔮", "desc": "Forecast de DAU/MAU e detecção precoce de queda de engajamento"},
+        {"name": "Daily Trends", "plan": "starter", "icon": "📅", "desc": "Tendências diárias de uso e engajamento por plataforma"},
+        {"name": "App Sentinel", "plan": "advanced", "icon": "🛡️", "desc": "Monitoramento de anomalias em DAU, MAU e stickiness"}
+      ]
+    },
+    "aquisicao": {
+      "label": "Aquisição",
+      "icon": "🚀",
+      "color": "#10b981",
+      "description": "Número de novos usuários instalando o app — a entrada do funil. Depende de ratings, reviews e visibilidade para converter quem chega. Concorrentes melhor posicionados roubam esse tráfego.",
+      "impacts": [],
+      "causedBy": ["ratings", "reviews", "visibilidade", "concorrentes"],
+      "position": {"x": 760, "y": 180},
+      "features": [
+        {"name": "Predictive Growth", "plan": "advanced", "icon": "📈", "desc": "Previsão de crescimento de downloads com machine learning"},
+        {"name": "Keyword Expansion", "plan": "advanced", "icon": "🔍", "desc": "Expansão de keywords para capturar mais tráfego orgânico"},
+        {"name": "Custom Pages Studio", "plan": "enterprise", "icon": "🎨", "desc": "Páginas personalizadas de produto para aumentar conversão"},
+        {"name": "App Foresight", "plan": "advanced", "icon": "🔮", "desc": "Forecast de aquisição com cenário otimista e pessimista"},
+        {"name": "Category Rank", "plan": "starter", "icon": "🏆", "desc": "Posição em categorias das stores — Google e Apple"}
+      ]
+    },
+    "visibilidade": {
+      "label": "Visibilidade",
+      "icon": "🔎",
+      "color": "#06b6d4",
+      "description": "Posição nas buscas e rankings das stores. As stores usam ratings e reviews como sinal de qualidade no ranking — qualidade técnica afeta visibilidade.",
+      "impacts": ["aquisicao"],
+      "causedBy": ["ratings", "concorrentes"],
+      "position": {"x": 760, "y": 360},
+      "features": [
+        {"name": "Keyword Expansion", "plan": "advanced", "icon": "🔍", "desc": "Identificar e dominar keywords de alto potencial"},
+        {"name": "Keyword Management", "plan": "starter", "icon": "🗂️", "desc": "Gestão completa do portfólio de keywords monitoradas"},
+        {"name": "Category Rank", "plan": "starter", "icon": "🏆", "desc": "Evolução de posição em categorias das stores"},
+        {"name": "Live Store Search", "plan": "starter", "icon": "📱", "desc": "Simula busca real na store com resultados ao vivo"}
+      ]
+    },
+    "churn": {
+      "label": "Churn",
+      "icon": "📉",
+      "color": "#dc2626",
+      "description": "O pior desfecho: o usuário desinstala. Churn é causado por fatores em cascata — performance ruim, reviews sem resposta, queda de engajamento — que se acumulam silenciosamente.",
+      "impacts": [],
+      "causedBy": ["reviews", "engajamento"],
+      "position": {"x": 680, "y": 430},
+      "features": [
+        {"name": "App Sentinel", "plan": "advanced", "icon": "🛡️", "desc": "Detecta sinais de churn antes do pico de desinstalações"},
+        {"name": "Review Brief", "plan": "advanced", "icon": "📝", "desc": "Identifica reclamações recorrentes que convertem em desinstalação"},
+        {"name": "Reviews Analysis", "plan": "starter", "icon": "💬", "desc": "Assuntos críticos que mais geram intenção de abandono"},
+        {"name": "Words", "plan": "pro", "icon": "🏷️", "desc": "Palavras que sinalizam intenção de desinstalar"},
+        {"name": "App Foresight", "plan": "advanced", "icon": "🔮", "desc": "Forecast de risco de queda de base ativa"}
+      ]
+    },
+    "receita": {
+      "label": "Receita no App",
+      "icon": "💰",
+      "color": "#d97706",
+      "description": "O resultado de negócio para o qual todas as outras dimensões contribuem em cadeia causal. A RankMyApp mede os drivers upstream — rating, aquisição, engajamento, retenção — que causalmente alimentam a receita.",
+      "impacts": [],
+      "causedBy": ["retencao", "engajamento"],
+      "isOutcome": true,
+      "position": {"x": 900, "y": 430},
+      "features": []
+    },
+    "concorrentes": {
+      "label": "Concorrentes",
+      "icon": "🔍",
+      "color": "#64748b",
+      "description": "O ecossistema competitivo determina onde e como o app se posiciona. Concorrentes com melhores ratings e maior visibilidade roubam share — mesmo que o app permaneça o mesmo.",
+      "impacts": ["aquisicao", "visibilidade"],
+      "causedBy": [],
+      "position": {"x": 530, "y": 50},
+      "features": [
+        {"name": "Competitive Radar", "plan": "advanced", "icon": "📡", "desc": "Monitoramento automático de movimentações dos concorrentes"},
+        {"name": "Competitor Map", "plan": "pro", "icon": "🗺️", "desc": "Mapeamento visual do ecossistema competitivo por categoria"},
+        {"name": "Top Apps", "plan": "starter", "icon": "🏅", "desc": "Ranking dos líderes de mercado por categoria e store"},
+        {"name": "App Comparison", "plan": "pro", "icon": "⚖️", "desc": "Comparação head-to-head com qualquer concorrente direto"},
+        {"name": "Comparative Analysis", "plan": "advanced", "icon": "🔗", "desc": "Análise comparativa de satisfação, ratings e reviews"}
+      ]
+    }
+  },
+  "edges": [
+    ["performance","ratings"], ["performance","reviews"], ["performance","retencao"],
+    ["concorrentes","aquisicao"], ["concorrentes","visibilidade"],
+    ["ratings","aquisicao"], ["ratings","visibilidade"],
+    ["reviews","aquisicao"], ["reviews","churn"],
+    ["retencao","engajamento"], ["engajamento","churn"],
+    ["visibilidade","aquisicao"],
+    ["retencao","receita"], ["engajamento","receita"]
+  ],
+  "personas": {
+    "cs": {
+      "id": "cs",
+      "label": "Customer Success",
+      "icon": "🤝",
+      "color": "#0ea5e9",
+      "tagline": "Diagnóstico e retenção de clientes",
+      "scenarios": [
+        {
+          "id": "rating-drop",
+          "icon": "⭐",
+          "title": "Nota do app caindo",
+          "problem": "A nota do app caiu para abaixo de 4.0 nos últimos 30 dias.",
+          "narrative": "Nota baixa é bloqueadora direta de aquisição — stores penalizam apps mal avaliados no ranking e usuários raramente instalam apps com menos de 4.0 estrelas. O caminho mais comum: crash recente → wave de reviews negativos → queda da nota. CS precisa identificar a causa raiz antes de agir.",
+          "insight": "A queda de 4.0 para 3.9 representa -15 a -20% na conversão orgânica — não os 2-3% esperados. Crash-free sessions < 99.5% correlaciona diretamente com rating < 3.5. Cada 0.1 ponto a menos no rating eleva o CPI em 2-3% (Luciq, 2025 / Google Play Console).",
+          "path": ["performance", "ratings", "aquisicao"],
+          "activeEdges": ["performance-ratings", "ratings-aquisicao", "ratings-visibilidade"],
+          "steps": [
+            {"node": "performance", "action": "Verificar se houve crash ou ANR correlacionado com o início da queda"},
+            {"node": "ratings", "action": "Analisar evolução da nota por versão e por país"},
+            {"node": "aquisicao", "action": "Medir impacto nos downloads — comparar período antes/depois"}
+          ],
+          "recommendations": [
+            {"action": "Ativar alertas de anomalia em rating e desinstalações", "name": "App Sentinel", "slug": "app-sentinel", "how": "Detecta quedas de rating antes que virem crise — alerta por severidade com contexto da variação"},
+            {"action": "Analisar distribuição de notas por versão do app", "name": "Ratings Analysis", "slug": "ratings-analysis", "how": "Identifica se a queda está concentrada em versão específica ou é sistêmica e histórica"},
+            {"action": "Correlacionar crash rate com o início da queda de nota", "name": "Performance Impact", "slug": "performance-impact", "how": "Correlação entre 60 métricas com delay mensurável — prova o link entre bug e queda de rating"},
+            {"action": "Responder os reviews negativos em menos de 24h", "name": "Reviews & Replies", "slug": "reviews-replies", "how": "Cada resposta personalizada em 24h pode recuperar +0.7 estrelas no Google Play"},
+            {"action": "Gerar briefing executivo para escalar ao time de produto", "name": "Review Brief", "slug": "review-brief", "how": "Transforma centenas de reviews em diagnóstico priorizado por impacto — exportável em PDF"}
+          ],
+          "analyses": [
+            {"icon": "📊", "name": "Benchmark de Rating por Segmento", "slug": "bench-rating-rd", "type": "benchmark", "deliverable": "Relatório", "desc": "Comparação da nota atual com top 5 concorrentes diretos no mesmo segmento e período.", "why": "Contextualiza se a queda é problema exclusivo do app ou tendência da categoria inteira."},
+            {"icon": "📉", "name": "Análise de Cohort por Versão", "slug": "cohort-version-rd", "type": "cohort", "deliverable": "Dashboard", "desc": "Segmenta usuários por versão em que instalaram e compara rating médio e churn em cada cohort.", "why": "Isola exatamente qual release causou o problema — elimina hipóteses e direciona o hotfix."},
+            {"icon": "🔄", "name": "Análise de Sazonalidade Histórica", "slug": "sazonal-rd", "type": "sazonal", "deliverable": "Relatório", "desc": "Picos e vales de rating nos últimos 24 meses com correlação de eventos e releases.", "why": "Diferencia queda estrutural de padrão sazonal recorrente — evita alarme desnecessário."}
+          ],
+          "tags": ["rating", "performance", "aquisicao"]
+        },
+        {
+          "id": "review-spike",
+          "icon": "💬",
+          "title": "Pico de reviews negativos",
+          "problem": "Volume de reviews negativos subiu 40% na última semana.",
+          "narrative": "Um pico repentino de reviews negativos quase sempre tem uma causa técnica identificável — atualização com bug, mudança de UX, ou problema de servidor. Antes de reagir com respostas genéricas, o CS deve identificar o padrão predominante nos comentários e cruzar com dados de performance.",
+          "insight": "Uma resposta do desenvolvedor em até 24h aumenta a nota de um review negativo em média 0.7 estrelas no Google Play. Respostas personalizadas — que referenciam o problema específico — têm taxa de atualização muito maior que respostas genéricas (Google Play Console, 2024).",
+          "path": ["performance", "reviews", "churn"],
+          "activeEdges": ["performance-reviews", "reviews-churn"],
+          "steps": [
+            {"node": "performance", "action": "Checar se ANR ou crash recente coincide com início do pico"},
+            {"node": "reviews", "action": "Identificar palavras-chave dominantes e versão mais mencionada"},
+            {"node": "churn", "action": "Estimar quantos usuários em risco — agir com resposta ativa"}
+          ],
+          "recommendations": [
+            {"action": "Categorizar os reviews do pico por tema e keyword dominante", "name": "Reviews Analysis", "slug": "reviews-analysis", "how": "Se 3+ reviews mencionam o mesmo termo, é sinal real — não ruído ou ataque coordenado"},
+            {"action": "Identificar os termos que dominam os reviews negativos recentes", "name": "Words", "slug": "words", "how": "Word cloud por período distingue padrão de ataque de reclamação legítima em segundos"},
+            {"action": "Responder os reviews críticos com contexto personalizado", "name": "Reviews & Replies", "slug": "reviews-replies", "how": "Resposta personalizada (citando o problema específico) eleva nota do review em média 0.7 estrelas"},
+            {"action": "Gerar síntese executiva para o produto priorizar hotfix", "name": "Review Brief", "slug": "review-brief", "how": "PDF com top issues por impacto e reviews selecionados pela IA — pronto para apresentar ao produto"},
+            {"action": "Configurar alerta para o próximo pico antes que escale", "name": "App Sentinel", "slug": "app-sentinel", "how": "Detecção automática de anomalias de rating e reviews para agir na próxima antes que vire crise"}
+          ],
+          "analyses": [
+            {"icon": "💬", "name": "Análise de Sentimento NLP por Tema", "slug": "nlp-rs", "type": "sentimento", "deliverable": "Relatório", "desc": "Categorização automática dos reviews do pico em temas, subtemas e sentimento por frase.", "why": "Prioriza o tema de maior impacto em vez de tratar todos os reviews como equivalentes."},
+            {"icon": "📢", "name": "Análise de Mídia Correlacionada", "slug": "midia-rs", "type": "midia", "deliverable": "Dashboard", "desc": "Cruza data de campanhas pagas e canais de aquisição com o spike de reviews negativos.", "why": "Identifica se a campanha trouxe usuários fora do perfil ideal — evitar repetir o erro."},
+            {"icon": "📊", "name": "Benchmark de Resposta a Reviews", "slug": "bench-reply-rs", "type": "benchmark", "deliverable": "Relatório", "desc": "Compara tempo médio de resposta e taxa de atualização de nota com os top 3 concorrentes.", "why": "Quantifica a vantagem competitiva em gestão de reviews — argumento para investir no processo."}
+          ],
+          "tags": ["reviews", "churn", "performance"]
+        },
+        {
+          "id": "churn-spike",
+          "icon": "📉",
+          "title": "Churn acelerado pós-atualização",
+          "problem": "Taxa de desinstalação aumentou 25% após o último release.",
+          "narrative": "Churn pós-release é sinal claro de problema de qualidade introduzido na atualização. A cadeia passa por reviews (usuários reclamam) e engajamento (usuários param de usar antes de desinstalar). O diagnóstico exige correlacionar os dados de performance da versão nova com o padrão de reviews.",
+          "insight": "Queda de 5+ pontos percentuais em D7 vs. a cohorte anterior é threshold para investigação imediata. D1 alta com D7 baixa = onboarding atraente mas app não entrega a promessa. Bugs intermitentes (não 100% reproduzíveis) não aparecem no crash rate mas destroem a retenção (Adjust, 2025).",
+          "path": ["performance", "reviews", "engajamento", "churn"],
+          "activeEdges": ["performance-reviews", "reviews-churn", "retencao-engajamento", "engajamento-churn"],
+          "steps": [
+            {"node": "performance", "action": "Identificar crash rate da versão nova vs versão anterior"},
+            {"node": "reviews", "action": "Filtrar reviews da semana por versão — qual o tema dominante?"},
+            {"node": "engajamento", "action": "Verificar queda de DAU/sessões no período pós-release"},
+            {"node": "churn", "action": "Confirmar correlação e escalar para equipe de produto"}
+          ],
+          "recommendations": [
+            {"action": "Detectar anomalia de desinstalações imediatamente após o release", "name": "App Sentinel", "slug": "app-sentinel", "how": "Correlaciona spike de desinstalação com data de deploy — evidência imediata para decisão de rollback"},
+            {"action": "Provar a cadeia causal: crash → abandono → desinstalação", "name": "Performance Impact", "slug": "performance-impact", "how": "Calcula o delay entre falha técnica e desinstalação — argumento definitivo para priorizar hotfix com engenharia"},
+            {"action": "Filtrar reviews por versão nova para encontrar o tema dominante", "name": "Reviews Analysis", "slug": "reviews-analysis", "how": "Usuários recorrentes que churnam pós-update mencionam explicitamente 'atualização', 'era melhor antes'"},
+            {"action": "Projetar impacto do churn nas métricas das próximas semanas", "name": "App Foresight", "slug": "app-foresight", "how": "Forecast de DAU com banda de confiança — dimensiona o custo da inação para justificar o hotfix"}
+          ],
+          "analyses": [
+            {"icon": "👥", "name": "Análise de DAU/MAU Pós-Release", "slug": "daumau-cs", "type": "daumau", "deliverable": "Dashboard", "desc": "Evolução diária de DAU, MAU e stickiness nos 14 dias antes e depois do release problemático.", "why": "Quantifica o tamanho real do impacto de engajamento — base para decisão de rollback."},
+            {"icon": "📉", "name": "Análise de Cohort de Churn", "slug": "cohort-churn-cs", "type": "cohort", "deliverable": "Relatório", "desc": "Cohort de usuários que desinstalaram após o release vs cohorts anteriores — D1/D7/D30.", "why": "Revela se o churn é de novos usuários ou da base consolidada — muda completamente a estratégia de correção."},
+            {"icon": "⚖️", "name": "Análise Comparativa de Versões", "slug": "compare-ver-cs", "type": "benchmark", "deliverable": "Relatório", "desc": "Métricas de qualidade (crash, ANR, rating, churn) comparadas entre as últimas 3 versões do app.", "why": "Identifica a regressão exata — onde o app era saudável e onde degradou."}
+          ],
+          "tags": ["churn", "performance", "release"]
+        },
+        {
+          "id": "satisfaction-drop",
+          "icon": "😟",
+          "title": "Queda geral de satisfação",
+          "problem": "NPS do app em queda consistente há 2 meses sem causa aparente.",
+          "narrative": "Quedas graduais de satisfação são mais perigosas que picos porque passam despercebidas. Geralmente são causadas por degradação lenta de performance (lentidão crescente) ou acúmulo de friction sem bugs explícitos. O CS precisa triangular ratings, reviews e performance para identificar o padrão.",
+          "insight": "ANR rate > 0.47% ou crash rate > 1.09% acionam penalidade de visibilidade no Google Play — o app pode receber warning label na listing, derrubando a conversão. Quedas graduais de performance (lentidão, não crash) são a causa mais subestimada de deterioração de NPS (Android Vitals / Google).",
+          "path": ["performance", "ratings", "reviews", "churn"],
+          "activeEdges": ["performance-ratings", "performance-reviews", "reviews-churn", "ratings-aquisicao"],
+          "steps": [
+            {"node": "performance", "action": "Verificar lentidão crescente (ANR) mesmo sem crashes — app ficou mais pesado?"},
+            {"node": "ratings", "action": "Mapear a curva de queda de rating — há aceleração em alguma versão?"},
+            {"node": "reviews", "action": "Identificar temas recorrentes que aparecem ao longo dos 2 meses"},
+            {"node": "churn", "action": "Projetar impacto no LTV e priorizar correção com o time de produto"}
+          ],
+          "recommendations": [
+            {"action": "Mapear queda de rating por versão, país e modelo de device", "name": "Ratings Analysis", "slug": "ratings-analysis", "how": "Distribui o problema em 3 dimensões — encontra se é sistêmico ou concentrado em segmento"},
+            {"action": "Minerar temas que cresceram gradualmente nos últimos 2 meses", "name": "Review Brief", "slug": "review-brief", "how": "Comparação de períodos revela o tema que apareceu silenciosamente — não só o que explodiu"},
+            {"action": "Comparar nota e sentiment com concorrentes do mesmo segmento", "name": "Comparative Analysis", "slug": "comparative-analysis", "how": "Se os concorrentes também pioraram, é tendência de mercado. Se só você, é problema interno"},
+            {"action": "Identificar quais palavras negativas aumentaram no período", "name": "Words", "slug": "words", "how": "Comparação de termos entre períodos revela o que ficou pior na percepção do usuário"},
+            {"action": "Correlacionar ANR crescente com queda de NPS (sem crash explícito)", "name": "Performance Impact", "slug": "performance-impact", "how": "Lentidão silenciosa — não crash — é a causa mais subestimada de queda gradual de satisfação"}
+          ],
+          "analyses": [
+            {"icon": "🔄", "name": "Análise de Sazonalidade Histórica de Satisfação", "slug": "sazonal-sd", "type": "sazonal", "deliverable": "Relatório", "desc": "Análise dos últimos 24 meses de NPS, rating e reviews com identificação de padrões cíclicos.", "why": "Distingue queda estrutural de flutuação sazonal — evita investir em correção de problema que se resolve sozinho."},
+            {"icon": "📊", "name": "Benchmark de NPS por Vertical", "slug": "bench-nps-sd", "type": "benchmark", "deliverable": "Deck", "desc": "Posicionamento do app em rating versus médias da vertical (fintech, saúde, e-commerce, varejo).", "why": "Contextualiza a gravidade da queda — NPS de 40 pode ser excelente em saúde e crítico em e-commerce."},
+            {"icon": "🔑", "name": "Análise de Keywords de Insatisfação por Período", "slug": "kw-insat-sd", "type": "keyword", "deliverable": "Relatório", "desc": "Evolução mês a mês dos termos negativos nos reviews — identifica quando cada problema surgiu.", "why": "Detecta o momento exato em que cada tema de insatisfação começou a crescer — timeline do problema."}
+          ],
+          "tags": ["satisfacao", "nps", "rating", "reviews"]
+        },
+        {
+          "id": "client-churn-risk",
+          "icon": "⚠️",
+          "title": "Cliente em risco de churn",
+          "problem": "NPS do cliente caiu para zona de detratores sem causa técnica visível.",
+          "narrative": "Quando o NPS despenca sem crash ou bug óbvio, a causa costuma estar na percepção acumulada — engajamento caindo silenciosamente, reviews negativos sem resposta, expectativa não entregue pelo produto. CS precisa triangular os dados antes da próxima reunião.",
+          "insight": "Clientes com DAU/MAU caindo 20%+ têm 3x mais chance de não renovar. Responder 100% dos reviews negativos em 48h reduz churn em 15% (Google Play Console, 2025).",
+          "path": ["engajamento", "churn"],
+          "activeEdges": ["engajamento-churn"],
+          "steps": [
+            {"node": "engajamento", "action": "Verificar tendência de DAU/MAU do cliente nas últimas 8 semanas"},
+            {"node": "churn", "action": "Cruzar com reviews negativos sem resposta — há reclamações acumuladas?"}
+          ],
+          "recommendations": [
+            {"action": "Monitorar anomalias de engajamento em tempo real", "name": "App Sentinel", "slug": "app-sentinel", "how": "Detecta queda de DAU antes do cliente perceber e questionar"},
+            {"action": "Apresentar forecast de base ativa para a próxima reunião", "name": "App Foresight", "slug": "app-foresight", "how": "Cockpit preditivo com banda de confiança — transforma dado de problema em dado de oportunidade"},
+            {"action": "Responder todos os reviews negativos dos últimos 30 dias", "name": "Reviews & Replies", "slug": "reviews-replies", "how": "Cada resposta reduz risco de desinstalação e demonstra cuidado — argumento de retenção para o CS"}
+          ],
+          "analyses": [
+            {"icon": "👥", "name": "Análise de DAU/MAU com Tendência", "slug": "daumau-ccr", "type": "daumau", "deliverable": "Dashboard", "desc": "Evolução de DAU, MAU e stickiness nas últimas 12 semanas com linha de tendência.", "why": "Quantifica objetivamente o risco — DAU caindo 20%+ em 8 semanas é argumento concreto para reunião de urgência."},
+            {"icon": "📊", "name": "Benchmark de Satisfação por Vertical", "slug": "bench-sat-ccr", "type": "benchmark", "deliverable": "Relatório", "desc": "Posição do app em rating e NPS versus média da vertical.", "why": "Contextualiza se a queda é problema isolado ou tendência do mercado."},
+            {"icon": "💬", "name": "Análise de Reviews Sem Resposta", "slug": "reviews-noreply-ccr", "type": "sentimento", "deliverable": "Relatório", "desc": "Reviews negativos dos últimos 90 dias sem resposta do desenvolvedor.", "why": "Reviews sem resposta são o principal driver de churn evitável — ação imediata de CS."}
+          ],
+          "tags": ["churn", "nps", "engajamento", "urgente"]
+        },
+        {
+          "id": "new-client-onboarding",
+          "icon": "🆕",
+          "title": "App novo sem histórico — por onde começar?",
+          "problem": "Novo cliente na plataforma, app recém-lançado, sem dados históricos para análise.",
+          "narrative": "Apps novos na plataforma não têm histórico de rating, reviews ou performance para comparar. A estratégia de CS é estabelecer a linha de base e definir as primeiras alavancas de crescimento orgânico. Visibilidade e aquisição são as prioridades antes de otimizar conversão.",
+          "insight": "Apps com menos de 100 reviews têm visibilidade orgânica limitada nas stores — a prioridade é velocidade de coleta de reviews. Primeiros 30 dias são críticos para indexação de keywords: apps que não atingem posição nas top 10 em 60 dias raramente crescem organicamente sem intervenção (AppTweak, 2025).",
+          "path": ["performance", "visibilidade", "aquisicao"],
+          "activeEdges": ["visibilidade-aquisicao", "ratings-visibilidade"],
+          "steps": [
+            {"node": "performance", "action": "Estabelecer baseline de crash rate e ANR — definir alertas de qualidade"},
+            {"node": "visibilidade", "action": "Auditar metadata atual e identificar keywords de oportunidade"},
+            {"node": "aquisicao", "action": "Projetar rampa de crescimento orgânico para os primeiros 90 dias"}
+          ],
+          "recommendations": [
+            {"action": "Identificar keywords de oportunidade com baixa concorrência", "name": "Keyword Expansion", "slug": "keyword-expansion", "how": "Portfolio Health Score — mostra keywords que o app pode ranquear nos top 5 nos primeiros 60 dias"},
+            {"action": "Monitorar posição em categoria desde o primeiro dia", "name": "Category Rank", "slug": "category-rank", "how": "Ranking diário por categoria — confirma se o lançamento está ganhando visibilidade orgânica"},
+            {"action": "Configurar alertas de performance desde o lançamento", "name": "App Sentinel", "slug": "app-sentinel", "how": "Detecta problemas de qualidade antes que acumulem reviews negativos no lançamento"}
+          ],
+          "analyses": [
+            {"icon": "📊", "name": "Benchmark de Lançamento por Vertical", "slug": "bench-launch-nco", "type": "benchmark", "deliverable": "Deck", "desc": "Downloads e rating médio de apps lançados na mesma vertical nos últimos 6 meses.", "why": "Define expectativa realista de crescimento — evita comparar com outliers que tiveram PR massivo."},
+            {"icon": "🔑", "name": "Análise de Oportunidade de Keywords", "slug": "kw-opp-nco", "type": "keyword", "deliverable": "Relatório", "desc": "Top 20 keywords com volume real e baixa concorrência para o segmento do app.", "why": "Keywords certas no lançamento determinam a trajetória orgânica dos primeiros 90 dias."},
+            {"icon": "🏆", "name": "Benchmark Competitivo do Segmento", "slug": "bench-comp-nco", "type": "competitivo", "deliverable": "Relatório", "desc": "Top 5 apps do segmento com rating, reviews e features principais.", "why": "Estabelece o benchmark de qualidade que o app precisa atingir para competir organicamente."}
+          ],
+          "tags": ["lançamento", "visibilidade", "aquisicao", "onboarding"]
+        }
+      ]
+    },
+    "marketing": {
+      "id": "marketing",
+      "label": "Marketing",
+      "icon": "📣",
+      "color": "#f97316",
+      "tagline": "Crescimento, aquisição e posicionamento",
+      "scenarios": [
+        {
+          "id": "downloads-stagnant",
+          "icon": "📊",
+          "title": "Downloads estagnados",
+          "problem": "Downloads estagnaram há 6 semanas sem mudança de budget ou campanha.",
+          "narrative": "Estagnação sem mudança de investimento quase sempre tem causa orgânica: queda de ranking, perda de visibilidade em keywords-chave, ou nota abaixo do threshold de conversão. Marketing precisa investigar o funil da store antes de aumentar spend.",
+          "insight": "Apps que caem do top 3 para o top 10 em keyword principal podem perder 60-70% do tráfego orgânico dessa keyword. A diferença entre posição 1 e posição 3 pode representar 3-5x mais cliques. Metadata update a cada 4-6 semanas é o ciclo recomendado para manter relevância algorítmica (AppTweak, 2025).",
+          "path": ["concorrentes", "ratings", "visibilidade", "aquisicao"],
+          "activeEdges": ["concorrentes-visibilidade", "ratings-visibilidade", "ratings-aquisicao", "visibilidade-aquisicao"],
+          "steps": [
+            {"node": "concorrentes", "action": "Verificar se concorrentes subiram de posição ou nota recentemente"},
+            {"node": "ratings", "action": "Checar se nota caiu abaixo de 4.0 — threshold crítico de conversão"},
+            {"node": "visibilidade", "action": "Auditar posição em keywords-chave e categorias — alguma perdeu rank?"},
+            {"node": "aquisicao", "action": "Medir CVR da página do app e comparar com benchmark do setor"}
+          ],
+          "recommendations": [
+            {"action": "Diagnosticar saúde do portfólio de keywords — o que está caindo?", "name": "Keyword Expansion", "slug": "keyword-expansion", "how": "Portfolio Health Score + diagnóstico por categoria (Problem/Attack/Opportunity) — aponta onde o orgânico está vazando"},
+            {"action": "Ver histórico de posição das keywords principais nas últimas 8 semanas", "name": "Keyword Evolution", "slug": "keyword-evolution", "how": "Curva de posição por keyword — identifica exatamente quando e em qual termo o organic caiu"},
+            {"action": "Verificar se rating caiu abaixo de 4.0 — threshold de busca filtrada", "name": "Ratings Overview", "slug": "ratings-overview", "how": "Rating < 4.0 exclui o app de usuários que filtram por 4+ no Play Store — impacto direto no orgânico"},
+            {"action": "Identificar quais concorrentes ganharam downloads no mesmo período", "name": "Predictive Growth", "slug": "predictive-growth", "how": "Marketshare e instalações dos concorrentes — confirma quem ganhou o que você perdeu e com qual velocidade"},
+            {"action": "Ativar alertas de queda de downloads para agir mais rápido", "name": "App Sentinel", "slug": "app-sentinel", "how": "Detecção automática de anomalia — avisa antes que a queda acumule semanas de estrago"}
+          ],
+          "analyses": [
+            {"icon": "📢", "name": "Análise de Mídia: Paid vs Organic", "slug": "midia-ds", "type": "midia", "deliverable": "Dashboard", "desc": "Decomposição de downloads por canal (orgânico, search ads, social) antes e durante a estagnação.", "why": "Identifica se o orgânico secou ou se o paid também perdeu eficiência — estratégias completamente diferentes."},
+            {"icon": "🔑", "name": "Análise de Benchmark de Keywords", "slug": "bench-kw-ds", "type": "keyword", "deliverable": "Relatório", "desc": "Share of voice nas top 20 keywords da categoria versus top 3 concorrentes no mesmo período.", "why": "Quantifica o quanto de tráfego orgânico está sendo capturado — base para decisão de investimento em ASO."},
+            {"icon": "🔄", "name": "Análise de Sazonalidade de Downloads", "slug": "sazonal-ds", "type": "sazonal", "deliverable": "Relatório", "desc": "Padrão histórico de downloads mês a mês nos últimos 2 anos com eventos de mercado correlacionados.", "why": "Diferencia estagnação estrutural de vale sazonal esperado — evita mudança de estratégia desnecessária."}
+          ],
+          "tags": ["downloads", "visibilidade", "keywords", "organico"]
+        },
+        {
+          "id": "competitor-share",
+          "icon": "🔍",
+          "title": "Concorrente ganhando share",
+          "problem": "Um concorrente cresceu 25% mais rápido no último trimestre.",
+          "narrative": "Perda de share para concorrente raramente é fruto de um único fator. Geralmente combinam maior visibilidade (melhores keywords) com melhor percepção (nota + reviews). Marketing precisa entender onde o concorrente ganhou vantagem para priorizar onde reagir.",
+          "insight": "Apps que combinam ASO + Apple Search Ads nas mesmas keywords têm lift de conversão de até +8.6% vs ASO isolado. Um concorrente com rating 0.3 acima do seu ganha posições organicamente ao longo do tempo — diferença de nota é vantagem composta, não pontual (AppTweak, 2025).",
+          "path": ["concorrentes", "visibilidade", "ratings", "aquisicao"],
+          "activeEdges": ["concorrentes-visibilidade", "concorrentes-aquisicao", "ratings-aquisicao", "visibilidade-aquisicao"],
+          "steps": [
+            {"node": "concorrentes", "action": "Mapear quais keywords o concorrente ganhou ranking — oportunidade perdida"},
+            {"node": "visibilidade", "action": "Comparar posição em categoria e share of voice nas buscas orgânicas"},
+            {"node": "ratings", "action": "Comparar nota e velocidade de resposta a reviews — diferencial de confiança"},
+            {"node": "aquisicao", "action": "Projetar recuperação de share com plano de keywords + melhoria de nota"}
+          ],
+          "recommendations": [
+            {"action": "Mapear o campo competitivo completo — incluindo ameaças não monitoradas", "name": "Competitor Map", "slug": "competitor-map", "how": "Quadrantes com score de similaridade e engajamento — encontra players emergentes antes que virem dominantes"},
+            {"action": "Identificar quais keywords o concorrente ganhou recentemente", "name": "Keyword Competitors", "slug": "keyword-competitors", "how": "Posição comparativa do cliente vs concorrente por keyword — revela onde a disputa está sendo perdida"},
+            {"action": "Ver mudanças de metadata que o concorrente realizou (título, screenshots)", "name": "Changes Log", "slug": "changes-log", "how": "Registro cronológico de todas as mudanças de ASO dos concorrentes — revela a estratégia por trás do ganho"},
+            {"action": "Comparar health score e engajamento com o concorrente que cresceu", "name": "Competitive Radar", "slug": "competitive-radar", "how": "Health score proprietário por subcategoria — quantifica o gap real e prioriza onde fechar primeiro"},
+            {"action": "Benchmarking de DAU/MAU e rating lado a lado", "name": "Comparative Analysis", "slug": "comparative-analysis", "how": "Dados objetivos de engajamento comparativo — elimina debates baseados em percepção"}
+          ],
+          "analyses": [
+            {"icon": "🏆", "name": "Benchmark Competitivo Completo", "slug": "bench-comp-mktcs", "type": "competitivo", "deliverable": "Deck", "desc": "Mapeamento de rating, reviews, share of voice e estimativa de downloads dos 5 principais concorrentes.", "why": "Quantifica o gap real — o concorrente cresceu porque você diminuiu ou porque o mercado expandiu?"},
+            {"icon": "🔑", "name": "Análise de Share of Voice em Keywords", "slug": "sov-mktcs", "type": "keyword", "deliverable": "Relatório", "desc": "Posição comparativa em todas as keywords relevantes do segmento — quais o concorrente domina.", "why": "Mapeia onde a batalha orgânica está sendo travada e em quais termos há oportunidade real de recuperação."},
+            {"icon": "👥", "name": "Análise de DAU/MAU Comparativa", "slug": "daumau-mktcs", "type": "daumau", "deliverable": "Dashboard", "desc": "Stickiness, DAU/MAU ratio e retenção estimada do concorrente que cresceu versus app atual.", "why": "Verifica se o concorrente cresceu em aquisição ou em retenção — define se a resposta é ASO ou produto."}
+          ],
+          "tags": ["concorrentes", "share", "visibilidade", "keywords"]
+        },
+        {
+          "id": "new-market",
+          "icon": "🌎",
+          "title": "Lançamento em novo mercado",
+          "problem": "Vamos expandir para o mercado LatAm — como estruturar o ASO?",
+          "narrative": "Lançamentos em novos mercados exigem ASO localizado — keywords em idioma local, screenshots adaptados, e benchmarks de nota por região. O ranking orgânico começa do zero, então a estratégia de visibilidade deve anteceder o investimento em mídia paga.",
+          "insight": "Localização completa (título + screenshots + preview video) tem lift de conversão de até +26% vs listing só traduzida. Expansão para localização Tier Full pode gerar até +128% de downloads no novo mercado. O App Store tem ratings por mercado — um app com 4.7 global pode ter 3.8 no mercado local se nunca teve presença lá (AppFollow, 2025).",
+          "path": ["concorrentes", "visibilidade", "ratings", "aquisicao"],
+          "activeEdges": ["concorrentes-visibilidade", "concorrentes-aquisicao", "visibilidade-aquisicao", "ratings-aquisicao"],
+          "steps": [
+            {"node": "concorrentes", "action": "Mapear top 10 concorrentes locais — quais keywords dominam no mercado alvo?"},
+            {"node": "visibilidade", "action": "Definir estratégia de keywords localizadas e posição-alvo em categoria"},
+            {"node": "ratings", "action": "Coletar reviews em português — adaptar resposta e onboarding para expectativas locais"},
+            {"node": "aquisicao", "action": "Projetar rampa de crescimento com mix orgânico + paid para os primeiros 90 dias"}
+          ],
+          "recommendations": [
+            {"action": "Pesquisar keywords com volume real no mercado alvo (não só traduções)", "name": "Keyword Analysis", "slug": "keyword-analysis", "how": "Volume de busca e dificuldade por keyword no país alvo — evita investir em termos com zero tráfego local"},
+            {"action": "Entender os players locais e suas keywords dominantes", "name": "Competitive Radar", "slug": "competitive-radar", "how": "Segmentação por subcategoria + health score dos apps locais — entende o campo antes de entrar"},
+            {"action": "Validar como o app aparece em buscas reais no país alvo", "name": "Live Store Search", "slug": "live-store-search", "how": "Busca em tempo real por país e idioma — confirma visibilidade antes de investir em mídia local"},
+            {"action": "Monitorar evolução do rating especificamente no novo mercado", "name": "Ratings Overview", "slug": "ratings-overview", "how": "Filtro por país — rating local pode ser 3.8 mesmo com 4.7 global se não há reviews locais ainda"},
+            {"action": "Acompanhar ranking no novo mercado dia a dia desde o lançamento", "name": "Daily Trends", "slug": "daily-trends", "how": "Oscilações diárias de ranking por país — valida se o lançamento está ganhando visibilidade orgânica"}
+          ],
+          "analyses": [
+            {"icon": "📊", "name": "Benchmark Local por Segmento", "slug": "bench-local-nm", "type": "benchmark", "deliverable": "Deck", "desc": "Top 5 players locais: rating, reviews, keywords dominantes e estimativa de downloads no mercado alvo.", "why": "Evita entrar num mercado desconhecido às cegas — define expectativas realistas de posição e CVR."},
+            {"icon": "📢", "name": "Análise de Mídia no Mercado Alvo", "slug": "midia-nm", "type": "midia", "deliverable": "Relatório", "desc": "CPIs de referência, canais mais eficientes e sazonalidade de mídia paga no mercado local.", "why": "Calibra o budget de lançamento com dados reais do mercado — não com benchmarks globais que podem não se aplicar."},
+            {"icon": "🔑", "name": "Análise de Oportunidade de Keywords Locais", "slug": "kw-local-nm", "type": "keyword", "deliverable": "Relatório", "desc": "Termos com volume real no idioma/mercado alvo — high volume, low competition, não apenas traduções diretas.", "why": "Keywords em mercados emergentes frequentemente não são simples traduções — análise local é essencial."}
+          ],
+          "tags": ["mercado", "latam", "visibilidade", "lancamento"]
+        },
+        {
+          "id": "page-cvr",
+          "icon": "🎯",
+          "title": "Conversão na página do app baixa",
+          "problem": "Anúncios trazem tráfego mas a conversão na página do app é abaixo de 20%.",
+          "narrative": "CVR baixo na página do app indica que o usuário chega, mas não se convence. Os principais culpados são nota abaixo do threshold de confiança, reviews negativos visíveis em destaque, e screenshots desalinhados com a proposta de valor. Cada um impacta a decisão de download de forma diferente.",
+          "insight": "Rating de 3 → 4 estrelas = +89% de conversão. Rating < 4.0 exclui o app de usuários que filtram buscas por 4+ no Play Store. 92% dos apps em destaque editorial têm 4+ estrelas; 63% têm 4.6+. Conversão média de referência: 25% (iOS) e 27.3% (Android) nos EUA (AppFollow / AppTweak, 2024).",
+          "path": ["ratings", "reviews", "aquisicao"],
+          "activeEdges": ["ratings-aquisicao", "reviews-aquisicao", "ratings-visibilidade"],
+          "steps": [
+            {"node": "ratings", "action": "Verificar nota atual — abaixo de 4.0 reduz conversão em até 70%"},
+            {"node": "reviews", "action": "Checar quais reviews aparecem em destaque — são negativos? Há resposta?"},
+            {"node": "aquisicao", "action": "Testar screenshots e Custom Product Page (CPP) para melhorar CVR"}
+          ],
+          "recommendations": [
+            {"action": "Diagnosticar se rating abaixo de 4.0 está bloqueando a conversão", "name": "Ratings Analysis", "slug": "ratings-analysis", "how": "Rating < 4.0 exclui o app de buscas filtradas e reduz conversão em 15-20% — prioridade #1 antes de otimizar visual"},
+            {"action": "Responder os reviews negativos visíveis em destaque na listing", "name": "Reviews & Replies", "slug": "reviews-replies", "how": "Reviews com resposta têm mais chance de atualização de nota — impacto direto na primeira impressão do usuário"},
+            {"action": "Entender quais temas dos reviews afastam potenciais usuários", "name": "Review Brief", "slug": "review-brief", "how": "Síntese dos temas mais negativos — orienta o que corrigir antes de investir em otimização de screenshots"},
+            {"action": "Testar variações da página com inteligência competitiva", "name": "Custom Pages Studio", "slug": "custom-pages-studio", "how": "Analytics de CVR por variação de página + CPPs dos concorrentes em tempo real para referência"},
+            {"action": "Medir impacto real das mudanças na taxa de conversão", "name": "Predictive Growth", "slug": "predictive-growth", "how": "Dados reais de CVR (não estimativas) + forecast para validar o efeito das otimizações de listing"}
+          ],
+          "analyses": [
+            {"icon": "📊", "name": "Benchmark de CVR por Vertical", "slug": "bench-cvr-pc", "type": "benchmark", "deliverable": "Relatório", "desc": "Taxa de conversão de referência por segmento (fintech, saúde, e-commerce) para iOS e Android.", "why": "20% pode ser excelente em fintech e crítico em gaming — contexto setorial é essencial para diagnóstico."},
+            {"icon": "📢", "name": "Análise de Mídia: Qual Fonte Converte", "slug": "midia-pc", "type": "midia", "deliverable": "Dashboard", "desc": "CVR segmentado por canal de aquisição — busca orgânica, social ads, search ads e programático.", "why": "Paid de baixa qualidade contamina o CVR médio — identificar a fonte ruim resolve sem mudar a página."},
+            {"icon": "💬", "name": "Análise de Sentimento nas Reviews de 1-2★", "slug": "nlp-pc", "type": "sentimento", "deliverable": "Relatório", "desc": "Categorização de reviews negativas para identificar objeções explícitas à instalação ou ao produto.", "why": "As objeções nos reviews negativos são as mesmas que bloqueiam a conversão — input direto para copy e screenshots."}
+          ],
+          "tags": ["cvr", "conversao", "ratings", "reviews"]
+        },
+        {
+          "id": "keyword-rank-drop",
+          "icon": "🔑",
+          "title": "App saiu do top 10 em keyword principal",
+          "problem": "Posição em keyword de alto volume caiu de top 5 para fora do top 10 em 2 semanas.",
+          "narrative": "Queda de ranking em keyword principal quase sempre é causada por concorrente que otimizou metadata ou ganhou volume de reviews. A janela para reagir é curta — cada semana fora do top 10 representa perda acumulada de tráfego orgânico.",
+          "insight": "A diferença entre posição 3 e posição 11 em keyword de alto volume representa até 80% menos impressões. Stores atualizam ranking de keywords em ciclos de 48-72h após mudança de metadata. Apps que respondem 100% dos reviews têm velocidade de ranqueamento 2x maior (AppTweak, 2025).",
+          "path": ["concorrentes", "visibilidade", "aquisicao"],
+          "activeEdges": ["concorrentes-visibilidade", "visibilidade-aquisicao"],
+          "steps": [
+            {"node": "concorrentes", "action": "Verificar se concorrente mudou metadata ou ganhou volume de reviews recentemente"},
+            {"node": "visibilidade", "action": "Auditar metadata atual — título, subtítulo e descrição estão otimizados?"},
+            {"node": "aquisicao", "action": "Quantificar perda de tráfego orgânico e projetar recuperação"}
+          ],
+          "recommendations": [
+            {"action": "Diagnosticar saúde do portfólio de keywords — o que está caindo?", "name": "Keyword Expansion", "slug": "keyword-expansion", "how": "Portfolio Health Score com diagnóstico por categoria — aponta onde o orgânico está vazando"},
+            {"action": "Monitorar mudanças de metadata dos concorrentes que subiram", "name": "Competitive Radar", "slug": "competitive-radar", "how": "Log de mudanças de ASO dos concorrentes — revela a estratégia por trás do ganho de posição"},
+            {"action": "Verificar posição ao vivo na store antes de alterar metadata", "name": "Live Store Search", "slug": "live-store-search", "how": "Busca em tempo real — confirma posição atual sem depender de dados com delay"}
+          ],
+          "analyses": [
+            {"icon": "🔑", "name": "Análise de Share of Voice em Keywords", "slug": "sov-krd", "type": "keyword", "deliverable": "Relatório", "desc": "Posição comparativa nas top 20 keywords do segmento versus top 3 concorrentes.", "why": "Mapeia onde a batalha orgânica está sendo perdida e quais termos têm oportunidade real."},
+            {"icon": "🏆", "name": "Benchmark Competitivo de ASO", "slug": "bench-aso-krd", "type": "competitivo", "deliverable": "Deck", "desc": "Análise de metadata, screenshots e keywords dos apps que subiram no ranking.", "why": "Revela o que o concorrente mudou para ganhar posição — insumo direto para otimização."},
+            {"icon": "🔄", "name": "Análise de Histórico de Posição", "slug": "hist-pos-krd", "type": "sazonal", "deliverable": "Dashboard", "desc": "Curva histórica de posição nas keywords principais nos últimos 90 dias.", "why": "Diferencia queda pontual de tendência de perda — define urgência e profundidade da intervenção."}
+          ],
+          "tags": ["keywords", "visibilidade", "aquisicao", "organico"]
+        }
+      ]
+    },
+    "produto": {
+      "id": "produto",
+      "label": "Produto",
+      "icon": "⚙️",
+      "color": "#8b5cf6",
+      "tagline": "Qualidade, retenção e roadmap",
+      "scenarios": [
+        {
+          "id": "engagement-drop",
+          "icon": "📉",
+          "title": "Engajamento caindo",
+          "problem": "DAU/MAU caiu 15% no último mês sem explicação clara.",
+          "narrative": "Queda de engajamento sem evento óbvio (atualização, sazonalidade) geralmente tem causa estrutural — degradação de performance, friction acumulado na UX, ou feature essencial com bug silencioso. Produto precisa triangular performance, feedback e dados de uso para identificar o ponto de ruptura.",
+          "insight": "DAU pode ser estável mesmo com churn alto se aquisição compensa — sempre triangular com cohort retention e new vs returning. Stickiness (DAU/MAU) < 10% em qualquer categoria é sinal de engajamento crítico. Uma queda de DAU por 12 semanas é leading indicator de churn 30-60 dias à frente (Pushwoosh / Adjust, 2025).",
+          "path": ["performance", "reviews", "retencao", "engajamento", "churn"],
+          "activeEdges": ["performance-reviews", "performance-retencao", "retencao-engajamento", "engajamento-churn"],
+          "steps": [
+            {"node": "performance", "action": "Checar se ANR rate aumentou — app pode estar travando sem crash explícito"},
+            {"node": "reviews", "action": "Analisar reviews das últimas 4 semanas — há tema novo de friction?"},
+            {"node": "retencao", "action": "Verificar D7 e D30 — a queda é de novos ou de usuários recorrentes?"},
+            {"node": "engajamento", "action": "Identificar qual feature/flow teve queda de uso — heatmap de sessões"},
+            {"node": "churn", "action": "Projetar impacto em LTV e montar sprint de correção prioritária"}
+          ],
+          "recommendations": [
+            {"action": "Ativar alerta para quedas de DAU e picos de desinstalação", "name": "App Sentinel", "slug": "app-sentinel", "how": "Detecção automática de anomalia com severidade — correlaciona com data de release para diagnóstico imediato"},
+            {"action": "Correlacionar queda de DAU com ANR rate e crash por versão", "name": "Performance Impact", "slug": "performance-impact", "how": "Correlação com delay mensurável entre performance e engajamento — argumento definitivo para priorizar correções"},
+            {"action": "Ver forecast de DAU e stickiness para dimensionar o impacto futuro", "name": "App Foresight", "slug": "app-foresight", "how": "Cockpit preditivo com DAU/MAU e forecast — sabe para onde está indo antes de confirmar a queda"},
+            {"action": "Identificar friction nos reviews das últimas 4 semanas por tema", "name": "Reviews Analysis", "slug": "reviews-analysis", "how": "Categorização automática por tema — encontra o problema de produto que os analytics não mostram diretamente"},
+            {"action": "Comparar stickiness com benchmarks de concorrentes na mesma vertical", "name": "Comparative Analysis", "slug": "comparative-analysis", "how": "DAU/MAU lado a lado com concorrentes — contextualiza se o problema é do app ou da categoria inteira"}
+          ],
+          "analyses": [
+            {"icon": "👥", "name": "Análise de DAU/MAU com Cohort Breakdown", "slug": "daumau-ed", "type": "daumau", "deliverable": "Dashboard", "desc": "DAU, MAU, stickiness e sessões por cohort de instalação — distingue queda de novos vs base existente.", "why": "DAU pode cair por dois motivos opostos: menos novos entrando ou mais antigos saindo — a solução é completamente diferente."},
+            {"icon": "🔄", "name": "Análise de Sazonalidade de Engajamento", "slug": "sazonal-ed", "type": "sazonal", "deliverable": "Relatório", "desc": "Padrão histórico de DAU/MAU e sessões por dia da semana, mês e período do ano.", "why": "Queda de 15% em dezembro pode ser sazonal — comparar sempre com o mesmo período do ano anterior."},
+            {"icon": "📊", "name": "Benchmark de Stickiness por Vertical", "slug": "bench-stick-ed", "type": "benchmark", "deliverable": "Relatório", "desc": "DAU/MAU ratio do app versus benchmarks de mercado por categoria (fintech, saúde, social, varejo).", "why": "Stickiness de 18% pode ser líder em saúde mas mediano em social — contexto define a urgência da iniciativa."}
+          ],
+          "tags": ["engajamento", "daumau", "churn", "performance"]
+        },
+        {
+          "id": "retention-d1",
+          "icon": "🔁",
+          "title": "Retenção D1 baixa após onboarding",
+          "problem": "Apenas 25% dos novos usuários voltam no dia seguinte à instalação.",
+          "narrative": "Retenção D1 baixa é quase sempre problema de primeira experiência — crash durante onboarding, tempo de carregamento longo, ou proposta de valor não entregue no primeiro uso. Performance técnica nessa janela é crítica: um único crash no primeiro acesso é suficiente para perder o usuário definitivamente.",
+          "insight": "D7 mediana por vertical: Fintech 13%, E-commerce 11%, Saúde 10%, Social 14% (Adjust, 2025). D1 alta com D7 baixa = onboarding atraente mas core value não entregue. Crash durante a sessão de onboarding é suficiente para perder o usuário definitivamente — não há segunda chance de primeira impressão.",
+          "path": ["performance", "retencao", "engajamento"],
+          "activeEdges": ["performance-retencao", "retencao-engajamento"],
+          "steps": [
+            {"node": "performance", "action": "Medir crash rate e ANR rate especificamente na sessão de onboarding"},
+            {"node": "retencao", "action": "Identificar em qual step do onboarding a maioria abandona (funil de ativação)"},
+            {"node": "engajamento", "action": "Verificar se usuários que completam onboarding têm D1 acima da média geral"}
+          ],
+          "recommendations": [
+            {"action": "Verificar crash rate e ANR especificamente na sessão de onboarding", "name": "Performance Impact", "slug": "performance-impact", "how": "Segmenta falhas por versão e device — encontra o crash que destrói a primeira impressão antes do usuário chegar ao core value"},
+            {"action": "Analisar reviews de 1-2 estrelas de usuários nos primeiros dias de uso", "name": "Reviews Analysis", "slug": "reviews-analysis", "how": "Filtra reviews por período pós-install — usuários que churnam no D1 costumam deixar review imediato com detalhe do problema"},
+            {"action": "Ver dados de conversão e atribuição por fonte de aquisição", "name": "App Foresight", "slug": "app-foresight", "how": "Paid às vezes tem D1 alto mas D7 baixo por expectativa errada — atribuição por fonte revela o desalinhamento"},
+            {"action": "Ativar alerta de aumento de desinstalações D1 pós-release", "name": "App Sentinel", "slug": "app-sentinel", "how": "Detecta spike de desinstalação imediatamente após deploy — antes que o D7 confirme o problema"}
+          ],
+          "analyses": [
+            {"icon": "📉", "name": "Análise de Cohort D1/D7/D30", "slug": "cohort-d1", "type": "cohort", "deliverable": "Dashboard", "desc": "Curvas de retenção por cohort semanal dos últimos 3 meses — identifica tendência e outliers.", "why": "D1 de 25% pode estar melhorando ou piorando — sem série histórica, o dado isolado não orienta decisão."},
+            {"icon": "🎯", "name": "Análise de Funil de Onboarding", "slug": "funil-onboard", "type": "daumau", "deliverable": "Relatório", "desc": "Taxa de conclusão por step do onboarding com identificação do ponto de maior abandono.", "why": "Usuário que abandona no step 2 tem um problema completamente diferente de quem abandona no step 5."},
+            {"icon": "📊", "name": "Benchmark de Retenção por Categoria", "slug": "bench-reten", "type": "benchmark", "deliverable": "Relatório", "desc": "D1, D7 e D30 de referência por vertical: Fintech D7=13%, Saúde D7=10%, E-commerce D7=11%.", "why": "25% de D1 pode ser aceitável ou crítico dependendo da vertical — benchmark contextualiza a urgência."}
+          ],
+          "tags": ["retencao", "d1", "onboarding", "performance"]
+        },
+        {
+          "id": "roadmap-priority",
+          "icon": "🗺️",
+          "title": "Priorização de roadmap",
+          "problem": "Precisamos decidir o que priorizar para o próximo quarter com dados.",
+          "narrative": "Roadmap orientado a dados ASO cruza três fontes: reviews (o que os usuários dizem que incomoda), performance (o que causa abandono invisível), e engajamento (quais features sustentam o uso ativo). A cadeia completa mostra onde cada iniciativa impacta — da causa raiz até o desfecho final.",
+          "insight": "Se uma funcionalidade aparece em >15% dos reviews negativos do mês, deve estar no sprint atual. Se 5-15%, vai para o backlog top. Se <5%, é melhoria pontual. Temas que aparecem em reviews E em crash logs têm prioridade máxima — sinal convergente de impacto real (AppFollow, 2025).",
+          "path": ["performance", "reviews", "retencao", "engajamento", "churn"],
+          "activeEdges": ["performance-reviews", "performance-retencao", "retencao-engajamento", "engajamento-churn", "reviews-churn"],
+          "steps": [
+            {"node": "performance", "action": "Listar bugs de crash/ANR por impacto (usuários afetados × frequência)"},
+            {"node": "reviews", "action": "Extrair top 5 temas de insatisfação — priorizar por volume e sentimento"},
+            {"node": "retencao", "action": "Identificar onde usuários saem no funil — onboarding, D1, D7, D30"},
+            {"node": "engajamento", "action": "Mapear quais features têm maior correlação com usuários de alta retenção"},
+            {"node": "churn", "action": "Calcular custo de aquisição desperdiçado com churn evitável"}
+          ],
+          "recommendations": [
+            {"action": "Categorizar reviews dos últimos 90 dias por tema e volume de menção", "name": "Review Brief", "slug": "review-brief", "how": "Top Issues priorizados por impacto com sub-temas específicos — input direto para o sprint planning sem análise manual"},
+            {"action": "Quantificar cada tema: >15% dos reviews negativos = sprint atual", "name": "Reviews Analysis", "slug": "reviews-analysis", "how": "Framework de priorização direto da voz do usuário — remove o achismo da decisão de roadmap"},
+            {"action": "Correlacionar temas de reviews com crash logs da mesma versão", "name": "Performance Impact", "slug": "performance-impact", "how": "Tema em reviews + crash logs ao mesmo tempo = prioridade máxima — sinal convergente de impacto real no negócio"},
+            {"action": "Identificar gaps competitivos que podem se tornar diferencial", "name": "Competitive Radar", "slug": "competitive-radar", "how": "Health score comparativo por subcategoria — onde o mercado não atende e você pode ser o primeiro a resolver"},
+            {"action": "Capturar o vocabulário real dos usuários para naming e copy de features", "name": "Words", "slug": "words", "how": "Os termos mais citados nos reviews são os mesmos digitados na busca da loja — ouro para ASO e copy"}
+          ],
+          "analyses": [
+            {"icon": "🎯", "name": "Análise de Impacto Estimado por Iniciativa", "slug": "impact-est-rp", "type": "benchmark", "deliverable": "Deck", "desc": "Estimativa de impacto em downloads, rating e retenção para cada item do backlog com dados comparativos.", "why": "Priorização com dados reais — cada iniciativa recebe score baseado em evidência, não em intuição."},
+            {"icon": "🏆", "name": "Benchmark de Features por Vertical", "slug": "bench-feat-rp", "type": "competitivo", "deliverable": "Relatório", "desc": "Inventário de features dos top 5 concorrentes com frequência de menção positiva em reviews.", "why": "Identifica features que viraram higiene da vertical vs diferenciais reais — evita copiar o que não retém."},
+            {"icon": "💬", "name": "Análise de Correlação Review→Métrica", "slug": "corr-review-rp", "type": "sentimento", "deliverable": "Relatório", "desc": "Quais temas de reviews têm maior correlação com churn, rating e stickiness nos últimos 6 meses.", "why": "Nem todo review negativo tem o mesmo impacto — foca o sprint no que realmente move a retenção."}
+          ],
+          "tags": ["roadmap", "priorização", "produto", "reviews"]
+        },
+        {
+          "id": "feature-no-engage",
+          "icon": "✨",
+          "title": "Feature nova não engaja",
+          "problem": "Lançamos uma feature nova há 3 semanas e o engajamento não cresceu.",
+          "narrative": "Feature que não engaja pode ter três causas: (1) descobrimento — usuários não sabem que existe, (2) friction — UX difícil de usar, ou (3) desalinhamento com necessidade real. Reviews são o diagnóstico mais rápido: usuários que encontraram a feature deixam pistas claras sobre por que usaram ou abandonaram.",
+          "insight": "Silêncio nos reviews sobre uma feature nova = usuários não sabem que ela existe (problema de discoverability) ou não importa. Reviews de 3 estrelas têm o feedback mais construtivo — usuários insatisfeitos mas ainda engajados. Separar rating de sentimento: reviews de 5 estrelas frequentemente contêm frustração oculta (RevenueCat, 2024).",
+          "path": ["reviews", "engajamento", "churn"],
+          "activeEdges": ["reviews-churn", "retencao-engajamento", "engajamento-churn"],
+          "steps": [
+            {"node": "reviews", "action": "Buscar menções à feature nova nos reviews — usuários a encontraram?"},
+            {"node": "engajamento", "action": "Verificar funil de uso da feature — quantos chegam, quantos usam de novo?"},
+            {"node": "churn", "action": "Identificar se usuários que usaram a feature têm menor churn — valida o valor"}
+          ],
+          "recommendations": [
+            {"action": "Buscar menções à feature nova nos reviews das últimas 4 semanas", "name": "Reviews Analysis", "slug": "reviews-analysis", "how": "Silêncio = não descobriram. Menções negativas = UX ou bug. Menções positivas = feature foi bem mas não retém"},
+            {"action": "Ver quais termos aparecem — a feature tem nome para o usuário?", "name": "Words", "slug": "words", "how": "Se o termo da feature não aparece no word cloud, os usuários nunca a encontraram ou não a associam ao nome interno"},
+            {"action": "Comparar sentiment antes e depois do lançamento da feature", "name": "Review Brief", "slug": "review-brief", "how": "Briefing por período — mede se a feature moveu a percepção geral do app positiva ou negativamente"},
+            {"action": "Analisar como concorrentes com feature similar são percebidos", "name": "Comparative Analysis", "slug": "comparative-analysis", "how": "Reviews de apps concorrentes com a mesma feature revelam o que os usuários realmente valorizam — insumo de UX e copy"}
+          ],
+          "analyses": [
+            {"icon": "🔍", "name": "Análise de Discoverability da Feature", "slug": "discover-fne", "type": "keyword", "deliverable": "Relatório", "desc": "Verifica se o nome/termo da feature aparece em reviews, keywords de busca e listings de concorrentes.", "why": "Se usuários não citam a feature nos reviews, não a encontraram ou não a reconhecem pelo nome interno."},
+            {"icon": "👥", "name": "Análise de DAU da Feature vs Total", "slug": "daumau-feat-fne", "type": "daumau", "deliverable": "Dashboard", "desc": "Taxa de adoção, frequência de uso e retention lift para usuários que usaram a feature vs grupo controle.", "why": "Se quem usa a feature tem melhor retenção mas poucos a usam, é problema de discovery — não de produto."},
+            {"icon": "🏆", "name": "Benchmark de Adoção de Features Similares", "slug": "bench-adopt-fne", "type": "competitivo", "deliverable": "Relatório", "desc": "Como concorrentes comunicaram e fizeram adoção de features equivalentes — screenshots e changelog.", "why": "Features similares com alta adoção revelam o padrão de comunicação que funciona — insumo de UX e copy."}
+          ],
+          "tags": ["feature", "engajamento", "reviews", "produto"]
+        },
+        {
+          "id": "crash-spike",
+          "icon": "💥",
+          "title": "Crash spike pós-release",
+          "problem": "Taxa de crash subiu 3x após atualização publicada há 48h.",
+          "narrative": "Crash spike pós-release é emergência de produto — a janela de ação é de 24-48h antes que os reviews negativos acumulem e o rating comece a cair. A decisão crítica é rollback imediato vs hotfix, e isso exige dados de impacto real antes de escalar para engenharia.",
+          "insight": "Crash rate > 1.09% aciona penalidade de visibilidade no Google Play. Cada 0.1 de queda no rating representa 2-3% de aumento no CPI (Luciq, 2025). A janela para rollback sem impacto no rating é de aproximadamente 48h — depois disso, os reviews já registraram o problema.",
+          "path": ["performance", "ratings", "aquisicao"],
+          "activeEdges": ["performance-ratings", "performance-reviews", "ratings-aquisicao"],
+          "steps": [
+            {"node": "performance", "action": "Medir crash rate da versão nova versus versão anterior — delta e usuários afetados"},
+            {"node": "ratings", "action": "Monitorar variação de rating nas últimas 48h — há aceleração de reviews negativos?"},
+            {"node": "aquisicao", "action": "Projetar impacto no ranking e downloads se o crash rate se mantiver por 7 dias"}
+          ],
+          "recommendations": [
+            {"action": "Correlacionar crash spike com data do release — evidência para decisão de rollback", "name": "Performance Impact", "slug": "performance-impact", "how": "Correlação automática entre falha técnica e métricas de qualidade — argumento definitivo para escalar ao produto"},
+            {"action": "Monitorar variação de rating em tempo real nas próximas 48h", "name": "App Sentinel", "slug": "app-sentinel", "how": "Alerta por severidade quando rating começa a cair — age antes do acúmulo de reviews negativos"},
+            {"action": "Filtrar reviews por versão nova — qual o tema dominante das reclamações?", "name": "Reviews Analysis", "slug": "reviews-analysis", "how": "Reviews filtrados por versão revelam o bug específico em linguagem do usuário — mais rápido que reproduce interno"}
+          ],
+          "analyses": [
+            {"icon": "⚖️", "name": "Análise Comparativa de Versões", "slug": "compare-ver-cs-crash", "type": "benchmark", "deliverable": "Relatório", "desc": "Crash rate, ANR e rating comparados entre versão nova e as 3 versões anteriores.", "why": "Prova que o problema foi introduzido na versão atual — base para decisão de rollback."},
+            {"icon": "📉", "name": "Análise de Cohort de Churn Pós-Release", "slug": "cohort-churn-crash", "type": "cohort", "deliverable": "Dashboard", "desc": "Desinstalações por cohort nas 48h após o release versus releases anteriores.", "why": "Quantifica o churn acelerado antes que se torne irreversível."},
+            {"icon": "💬", "name": "Análise de Reviews da Versão Nova", "slug": "reviews-newver-crash", "type": "sentimento", "deliverable": "Relatório", "desc": "Reviews filtrados pela versão problemática com categorização por tema de crash.", "why": "Usuários descrevem o bug com detalhes que o crash log não captura — acelera diagnóstico técnico."}
+          ],
+          "tags": ["crash", "performance", "urgente", "release"]
+        }
+      ]
+    }
+  },
+  "tools": {
+    "app-sentinel": {"name": "App Sentinel", "plan": "advanced", "icon": "🛡️", "description": "Monitoramento contínuo com alertas de anomalias em métricas de qualidade", "problem": "Problemas de qualidade detectados tarde demais", "deliverable": "Alertas por severidade com contexto da variação"},
+    "performance-impact": {"name": "Performance Impact", "plan": "pro", "icon": "⚡", "description": "Correlaciona falhas técnicas com queda de rating e reviews negativos", "problem": "Dificuldade em provar relação entre bugs e impacto no negócio", "deliverable": "Correlação com delay mensurável entre falha e queda de métrica"},
+    "ratings-analysis": {"name": "Ratings Analysis", "plan": "starter", "icon": "⭐", "description": "Evolução detalhada de ratings por versão, país e dispositivo", "problem": "Nota caindo sem entender onde e por quê", "deliverable": "Distribuição de notas por dimensão com linha de tendência"},
+    "ratings-overview": {"name": "Ratings Overview", "plan": "starter", "icon": "📊", "description": "Visão geral comparativa de ratings Google e Apple", "problem": "Visão fragmentada da nota entre plataformas", "deliverable": "Dashboard unificado de rating por plataforma"},
+    "reviews-analysis": {"name": "Reviews Analysis", "plan": "starter", "icon": "💬", "description": "Análise profunda de avaliações por tema, sentimento e versão", "problem": "Volume de reviews impossível de analisar manualmente", "deliverable": "Categorização automática por tema com severidade"},
+    "review-brief": {"name": "Review Brief", "plan": "advanced", "icon": "📝", "description": "Síntese inteligente semanal de reviews com IA generativa", "problem": "Impossível extrair insights de centenas de reviews rapidamente", "deliverable": "PDF executivo com top issues priorizados por impacto"},
+    "words": {"name": "Words", "plan": "pro", "icon": "🏷️", "description": "Palavras-chave mais frequentes nos comentários por período", "problem": "Padrões de linguagem do usuário invisíveis na análise manual", "deliverable": "Word cloud interativo com evolução temporal"},
+    "reviews-replies": {"name": "Reviews & Replies", "plan": "pro", "icon": "↩️", "description": "Respostas a avaliações para recuperação ativa de usuários insatisfeitos", "problem": "Reviews negativos acumulando sem resposta do desenvolvedor", "deliverable": "Interface de resposta com templates e métricas de atualização de nota"},
+    "app-foresight": {"name": "App Foresight", "plan": "advanced", "icon": "🔮", "description": "Previsão de crescimento e risco com cenários otimista e pessimista", "problem": "Decisões sem projeção do impacto futuro das ações atuais", "deliverable": "Forecast de DAU/MAU e downloads com banda de confiança"},
+    "comparative-analysis": {"name": "Comparative Analysis", "plan": "advanced", "icon": "🔗", "description": "Análise comparativa de satisfação, ratings e reviews versus concorrentes", "problem": "Impossível saber se o app está bem ou mal sem benchmark real", "deliverable": "Dashboard comparativo com gap analysis"},
+    "keyword-expansion": {"name": "Keyword Expansion", "plan": "advanced", "icon": "🔍", "description": "Expansão de keywords para capturar mais tráfego orgânico", "problem": "Portfólio de keywords estagnado perdendo share orgânico", "deliverable": "Portfolio Health Score com diagnóstico e oportunidades"},
+    "custom-pages-studio": {"name": "Custom Pages Studio", "plan": "enterprise", "icon": "🎨", "description": "Páginas personalizadas de produto para aumentar conversão", "problem": "CVR baixo sem capacidade de testar variações da listing", "deliverable": "Custom Product Pages com analytics de conversão por variação"},
+    "predictive-growth": {"name": "Predictive Growth", "plan": "advanced", "icon": "📈", "description": "Previsão de crescimento de downloads com machine learning", "problem": "Crescimento orgânico imprevisível sem modelo preditivo", "deliverable": "Forecast de downloads com cenários e drivers identificados"},
+    "category-rank": {"name": "Category Rank", "plan": "starter", "icon": "🏆", "description": "Posição em categorias das stores — Google e Apple", "problem": "Visibilidade em categoria desconhecida sem monitoramento", "deliverable": "Histórico de posição por categoria com evolução diária"},
+    "keyword-management": {"name": "Keyword Management", "plan": "starter", "icon": "🗂️", "description": "Gestão completa do portfólio de keywords monitoradas", "problem": "Keywords monitoradas manualmente sem histórico estruturado", "deliverable": "Dashboard de keywords com posição atual e histórico"},
+    "live-store-search": {"name": "Live Store Search", "plan": "starter", "icon": "📱", "description": "Simula busca real na store com resultados ao vivo", "problem": "Impossível saber exatamente onde o app aparece nas buscas reais", "deliverable": "Screenshot em tempo real das buscas na store por país e device"},
+    "competitive-radar": {"name": "Competitive Radar", "plan": "advanced", "icon": "📡", "description": "Monitoramento automático de movimentações dos concorrentes", "problem": "Concorrentes mudam estratégia sem aviso e sem que a equipe perceba", "deliverable": "Health score comparativo com alertas de mudança de posição"},
+    "competitor-map": {"name": "Competitor Map", "plan": "pro", "icon": "🗺️", "description": "Mapeamento visual do ecossistema competitivo por categoria", "problem": "Campo competitivo mapeado manualmente e sempre desatualizado", "deliverable": "Quadrante competitivo com score de similaridade e engajamento"},
+    "keyword-competitors": {"name": "Keyword Competitors", "plan": "advanced", "icon": "🔑", "description": "Posição comparativa do cliente versus concorrentes por keyword", "problem": "Não saber em quais keywords a disputa orgânica está sendo perdida", "deliverable": "Tabela de posições comparativas por keyword com delta"},
+    "changes-log": {"name": "Changes Log", "plan": "advanced", "icon": "📋", "description": "Registro cronológico de todas as mudanças de ASO dos concorrentes", "problem": "Impossível rastrear o que o concorrente mudou para ganhar posição", "deliverable": "Timeline de mudanças de metadata, screenshots e preço por concorrente"},
+    "keyword-analysis": {"name": "Keyword Analysis", "plan": "starter", "icon": "🔎", "description": "Volume de busca e dificuldade por keyword no país alvo", "problem": "Keywords escolhidas sem dados de volume real do mercado local", "deliverable": "Ranking de keywords por volume, dificuldade e oportunidade"},
+    "daily-trends": {"name": "Daily Trends", "plan": "starter", "icon": "📅", "description": "Tendências diárias de uso e engajamento por plataforma", "problem": "DAU e sessões atualizados com delay — decisões baseadas em dados velhos", "deliverable": "Dashboard de DAU, sessões e stickiness com atualização diária"},
+    "top-apps": {"name": "Top Apps", "plan": "starter", "icon": "🏅", "description": "Ranking dos líderes de mercado por categoria e store", "problem": "Desconhecimento dos apps que lideram a categoria em cada store", "deliverable": "Ranking atualizado dos top 100 apps por categoria com métricas"},
+    "app-comparison": {"name": "App Comparison", "plan": "pro", "icon": "⚖️", "description": "Comparação head-to-head com qualquer concorrente direto", "problem": "Sem como comparar métricas objetivamente com um concorrente específico", "deliverable": "Side-by-side de rating, reviews, keywords e estimativa de downloads"}
+  },
+  "analysis_types": {
+    "benchmark": {"label": "Benchmark", "color": "#64748b", "icon": "📊"},
+    "daumau": {"label": "DAU/MAU", "color": "#6366f1", "icon": "👥"},
+    "midia": {"label": "Mídia", "color": "#f97316", "icon": "📢"},
+    "cohort": {"label": "Cohort", "color": "#8b5cf6", "icon": "📉"},
+    "sentimento": {"label": "Sentimento", "color": "#3b82f6", "icon": "💬"},
+    "keyword": {"label": "Keyword", "color": "#f59e0b", "icon": "🔑"},
+    "sazonal": {"label": "Sazonal", "color": "#06b6d4", "icon": "🔄"},
+    "competitivo": {"label": "Competitivo", "color": "#dc2626", "icon": "🏆"}
+  }
+}
