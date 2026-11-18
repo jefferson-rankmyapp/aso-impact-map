@@ -405,7 +405,7 @@
       "label": "Negócio e Operação",
       "icon": "🏪",
       "color": "#ec4899",
-      "description": "Causas de insatisfação que nascem fora do código: entrega, pagamento e cobrança, atendimento, política de crédito e oferta, conformidade. Na validação de nov/2026, foram a maior parte das queixas em 3 de 4 apps (92% na Ultragaz). Cada tema tem um dono fora do time de produto.",
+      "description": "Causas de insatisfação que nascem fora do código: entrega, pagamento e cobrança, atendimento, política de crédito e oferta, conformidade. Cada tema tem um dono fora do time de produto.",
       "impacts": [
         "ratings",
         "reviews",
