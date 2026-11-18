@@ -1,6 +1,6 @@
 {
-  "version": "2.0.0",
-  "generated_at": "2026-07-29T00:00:00Z",
+  "version": "2.1.0",
+  "generated_at": "2026-11-18T00:00:00Z",
   "dimensions": {
     "performance": {
       "label": "Performance Técnica",
@@ -36,13 +36,14 @@
       "label": "Ratings",
       "icon": "⭐",
       "color": "#f59e0b",
-      "description": "A nota do app é fator crítico de decisão de download. Apps com nota abaixo de 4.0 perdem mais de 70% dos usuários potenciais antes mesmo de chegar à página de detalhes.",
+      "description": "A nota do app é fator crítico de decisão de download. Apps com nota abaixo de 4.0 perdem mais de 70% dos usuários potenciais antes mesmo de chegar à página de detalhes. Antes de usar a nota como sinal, cheque a integridade: nota da loja mais de 1 ponto acima da média das reviews com texto, com mais de 80% das 5★ com até 25 caracteres, indica nota que não reflete a experiência.",
       "impacts": [
         "aquisicao",
         "visibilidade"
       ],
       "causedBy": [
-        "performance"
+        "performance",
+        "negocio_operacao"
       ],
       "position": {
         "x": 450,
@@ -79,7 +80,8 @@
         "churn"
       ],
       "causedBy": [
-        "performance"
+        "performance",
+        "negocio_operacao"
       ],
       "position": {
         "x": 450,
@@ -196,8 +198,10 @@
       "label": "Aquisição",
       "icon": "🚀",
       "color": "#10b981",
-      "description": "Número de novos usuários instalando o app — a entrada do funil. Depende de ratings, reviews e visibilidade para converter quem chega. Concorrentes melhor posicionados roubam esse tráfego.",
-      "impacts": [],
+      "description": "Número de novos usuários instalando o app — a entrada do funil. Depende de ratings, reviews e visibilidade para converter quem chega, e também alimenta a visibilidade: no Google Play, instalações recentes movem a posição na categoria. Concorrentes melhor posicionados roubam esse tráfego.",
+      "impacts": [
+        "visibilidade"
+      ],
       "causedBy": [
         "ratings",
         "reviews",
@@ -245,13 +249,14 @@
       "label": "Visibilidade",
       "icon": "🔎",
       "color": "#06b6d4",
-      "description": "Posição nas buscas e rankings das stores. As stores usam ratings e reviews como sinal de qualidade no ranking — qualidade técnica afeta visibilidade.",
+      "description": "Posição nas buscas e rankings das stores. As stores usam ratings e reviews como sinal de qualidade, num efeito de longo prazo. No curto prazo, o que move a posição na categoria do Google Play são as instalações: o efeito aparece em cerca de 3 dias para apps fora do top 5 e é nulo para quem já está no topo.",
       "impacts": [
         "aquisicao"
       ],
       "causedBy": [
         "ratings",
-        "concorrentes"
+        "concorrentes",
+        "aquisicao"
       ],
       "position": {
         "x": 760,
@@ -292,7 +297,8 @@
       "impacts": [],
       "causedBy": [
         "reviews",
-        "engajamento"
+        "engajamento",
+        "negocio_operacao"
       ],
       "position": {
         "x": 680,
@@ -394,6 +400,36 @@
           "desc": "Análise comparativa de satisfação, ratings e reviews"
         }
       ]
+    },
+    "negocio_operacao": {
+      "label": "Negócio e Operação",
+      "icon": "🏪",
+      "color": "#ec4899",
+      "description": "Causas de insatisfação que nascem fora do código: entrega, pagamento e cobrança, atendimento, política de crédito e oferta, conformidade. Na validação de nov/2026, foram a maior parte das queixas em 3 de 4 apps (92% na Ultragaz). Cada tema tem um dono fora do time de produto.",
+      "impacts": [
+        "ratings",
+        "reviews",
+        "churn"
+      ],
+      "causedBy": [],
+      "position": {
+        "x": 210,
+        "y": 40
+      },
+      "features": [
+        {
+          "name": "Reviews Analysis",
+          "plan": "starter",
+          "icon": "💬",
+          "desc": "Separa temas de negócio e operação dos temas técnicos nas avaliações negativas"
+        },
+        {
+          "name": "Review Brief",
+          "plan": "advanced",
+          "icon": "📝",
+          "desc": "Leva os temas de operação para a área dona com volume e exemplos"
+        }
+      ]
     }
   },
   "edges": [
@@ -452,6 +488,22 @@
     [
       "engajamento",
       "receita"
+    ],
+    [
+      "negocio_operacao",
+      "ratings"
+    ],
+    [
+      "negocio_operacao",
+      "reviews"
+    ],
+    [
+      "negocio_operacao",
+      "churn"
+    ],
+    [
+      "aquisicao",
+      "visibilidade"
     ]
   ],
   "personas": {
@@ -484,6 +536,7 @@
               "node": "performance",
               "action": "Verificar se houve crash ou ANR correlacionado com o início da queda"
             },
+            "Checar a integridade da nota: loja >1 ponto acima da média das reviews com texto e >80% das 5★ com até 25 caracteres = não usar a nota como sinal de qualidade",
             {
               "node": "ratings",
               "action": "Analisar evolução da nota por versão e por país"
@@ -1041,7 +1094,7 @@
           "title": "Downloads estagnados",
           "problem": "Downloads estagnaram há 6 semanas sem mudança de budget ou campanha.",
           "narrative": "Estagnação sem mudança de investimento quase sempre tem causa orgânica: queda de ranking, perda de visibilidade em keywords-chave, ou nota abaixo do threshold de conversão. Marketing precisa investigar o funil da store antes de aumentar spend.",
-          "insight": "Apps que caem do top 3 para o top 10 em keyword principal podem perder 60-70% do tráfego orgânico dessa keyword. A diferença entre posição 1 e posição 3 pode representar 3-5x mais cliques. Metadata update a cada 4-6 semanas é o ciclo recomendado para manter relevância algorítmica (AppTweak, 2025).",
+          "insight": "Apps que caem do top 3 para o top 10 em keyword principal podem perder 60-70% do tráfego orgânico dessa keyword. A diferença entre posição 1 e posição 3 pode representar 3-5x mais cliques. Metadata update a cada 4-6 semanas é o ciclo recomendado para manter relevância algorítmica (AppTweak, 2025). Instalações também puxam a posição na categoria: picos de instalação melhoram o ranking em cerca de 3 dias para apps fora do top 5 (validação Rank, nov/2026).",
           "path": [
             "concorrentes",
             "ratings",
@@ -1052,7 +1105,8 @@
             "concorrentes-visibilidade",
             "ratings-visibilidade",
             "ratings-aquisicao",
-            "visibilidade-aquisicao"
+            "visibilidade-aquisicao",
+            "aquisicao-visibilidade"
           ],
           "steps": [
             {
@@ -1752,8 +1806,9 @@
           "title": "Priorização de roadmap",
           "problem": "Precisamos decidir o que priorizar para o próximo quarter com dados.",
           "narrative": "Roadmap orientado a dados ASO cruza três fontes: reviews (o que os usuários dizem que incomoda), performance (o que causa abandono invisível), e engajamento (quais features sustentam o uso ativo). A cadeia completa mostra onde cada iniciativa impacta — da causa raiz até o desfecho final.",
-          "insight": "Se uma funcionalidade aparece em >15% dos reviews negativos do mês, deve estar no sprint atual. Se 5-15%, vai para o backlog top. Se <5%, é melhoria pontual. Temas que aparecem em reviews E em crash logs têm prioridade máxima — sinal convergente de impacto real (AppFollow, 2025).",
+          "insight": "Se um tema aparece em >15% dos reviews negativos do mês, ele é prioridade imediata da área dona: tema técnico vai para o sprint atual; tema de negócio e operação (entrega, pagamento, atendimento, oferta) vai para o plano da área responsável, com o produto acompanhando. Se 5-15%, backlog top. Se <5%, melhoria pontual. Temas que aparecem em reviews E em crash logs têm prioridade máxima — sinal convergente de impacto real (AppFollow, 2025).",
           "path": [
+            "negocio_operacao",
             "performance",
             "reviews",
             "retencao",
@@ -1761,6 +1816,7 @@
             "churn"
           ],
           "activeEdges": [
+            "negocio_operacao-reviews",
             "performance-reviews",
             "performance-retencao",
             "retencao-engajamento",
@@ -1772,6 +1828,7 @@
               "node": "performance",
               "action": "Listar bugs de crash/ANR por impacto (usuários afetados × frequência)"
             },
+            "Separar os temas de queixa entre técnicos e de negócio e operação, e nomear o dono de cada um",
             {
               "node": "reviews",
               "action": "Extrair top 5 temas de insatisfação — priorizar por volume e sentimento"
@@ -1800,7 +1857,8 @@
               "action": "Quantificar cada tema: >15% dos reviews negativos = sprint atual",
               "name": "Reviews Analysis",
               "slug": "reviews-analysis",
-              "how": "Framework de priorização direto da voz do usuário — remove o achismo da decisão de roadmap"
+              "how": "Framework de priorização direto da voz do usuário — remove o achismo da decisão de roadmap",
+              "why": "Quantificar cada tema: >15% dos reviews negativos = prioridade imediata da área dona (sprint, se técnico; operação, se não)"
             },
             {
               "action": "Correlacionar temas de reviews com crash logs da mesma versão",
