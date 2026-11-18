@@ -67,6 +67,12 @@ function DataProvider({ children }) {
       setData(newData);
       setSha(result.content.sha);
       setLastSaved(new Date());
+    } catch (e) {
+      // Se conflito de SHA (409), recarrega silenciosamente para próxima tentativa funcionar
+      if (e.message && e.message.includes('409')) {
+        try { const fresh = await readData(); setSha(fresh.sha); } catch (_) {}
+      }
+      throw e;
     } finally { setSaving(false); }
   }, [sha]);
 

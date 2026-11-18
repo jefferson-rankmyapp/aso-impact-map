@@ -13,7 +13,9 @@ export async function readData() {
   });
   if (!res.ok) throw new Error(`GitHub API error: ${res.status} — verifique o VITE_GITHUB_TOKEN`);
   const file = await res.json();
-  const content = atob(file.content.replace(/\n/g, ''));
+  const bytes = atob(file.content.replace(/\n/g, ''));
+  const uint8 = new Uint8Array([...bytes].map(c => c.charCodeAt(0)));
+  const content = new TextDecoder('utf-8').decode(uint8);
   return { data: JSON.parse(content), sha: file.sha };
 }
 
