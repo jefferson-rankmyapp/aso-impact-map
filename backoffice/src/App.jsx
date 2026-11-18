@@ -23,6 +23,7 @@ function Login({ onAuth }) {
         <p style={{ margin: 0, color: '#94a3b8', fontSize: 13 }}>Acesso restrito à equipe RankMyApp.</p>
         <input
           type="password" placeholder="Senha" value={pw} onChange={e => { setPw(e.target.value); setErr(''); }}
+          autoComplete="current-password"
           style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #334155', background: '#0f172a', color: '#f1f5f9', fontSize: 15 }}
           autoFocus
         />
@@ -748,7 +749,7 @@ export default function App() {
   if (!authed) return <Login onAuth={() => setAuthed(true)} />;
 
   return (
-    <BrowserRouter basename="/backoffice">
+    <BrowserRouter>
       <DataProvider>
         <Shell onLogout={logout} />
       </DataProvider>
