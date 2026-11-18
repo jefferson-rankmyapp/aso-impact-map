@@ -2234,13 +2234,16 @@
       "deliverable": "Side-by-side de rating, reviews, keywords e estimativa de downloads"
     },
     "keyword-evolution": {
-      "name": "Keyword Evolution TEST",
+      "name": "Keyword Evolution",
       "slug": "keyword-evolution",
       "description": "Monitora evolução de keywords ao longo do tempo",
       "plan": "starter",
-      "dims": [],
-      "problems": "Teste de save",
-      "delivers": "Validação do fluxo"
+      "dims": [
+        "visibilidade",
+        "aquisicao"
+      ],
+      "problems": "Saber a posição atual de uma keyword não responde 'estamos evoluindo?' — sem histórico, o time não consegue medir o impacto das otimizações ao longo do tempo.",
+      "delivers": "1. Histórico de posição por keyword com gráfico de evolução\n2. Comparação de períodos para evidenciar progressão ou regressão\n3. Identificação de keywords em queda acelerada para ação imediata"
     }
   },
   "analysis_types": {
