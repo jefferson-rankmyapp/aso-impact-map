@@ -2234,13 +2234,13 @@
       "deliverable": "Side-by-side de rating, reviews, keywords e estimativa de downloads"
     },
     "keyword-evolution": {
-      "name": "Keyword Evolution",
+      "name": "Keyword Evolution TEST",
       "slug": "keyword-evolution",
       "description": "Monitora evolução de keywords ao longo do tempo",
       "plan": "starter",
       "dims": [],
-      "problems": "",
-      "delivers": ""
+      "problems": "Teste de save",
+      "delivers": "Validação do fluxo"
     }
   },
   "analysis_types": {
